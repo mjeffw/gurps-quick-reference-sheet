@@ -1,0 +1,38 @@
+{
+	"id": "gurps-quick-reference-sheet",
+	"title": "Gaming Ballistic's GURPS Quick Reference Character Sheet",
+	"version": "1.0.0",
+	"compatibility": {
+		"minimum": "11",
+		"verified": "11"
+	},
+	"relationships": {
+		"systems": [
+			{
+				"id": "gurps",
+				"type": "system",
+				"compatibility": {
+					"minimum": "0.16.10",
+					"verified": "0.16.10"
+				}
+			}
+		]
+	},
+	"authors": [
+		{
+			"name": "Douglas Cole",
+			"url": "https://gaming-ballistic.myshopify.com",
+			"patreon": "https://www.patreon.com/GamingBallistic",
+			"discord": "Douglas (Gaming Ballistic)#2658"
+		},
+		{
+			"name": "M. Jeff Wilson",
+			"discord": "Nick Coffin, PI#8616",
+			"email": "nick.coffin_pi@icloud.com",
+			"flags": {}
+		}
+	],
+	"styles": [
+		"./gb-quick-reference/styles/gb-quick-reference.css"
+	]
+}

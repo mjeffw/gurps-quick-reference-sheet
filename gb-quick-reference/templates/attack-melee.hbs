@@ -1,0 +1,45 @@
+{{#if level}}
+  <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}' data-key='system.melee.{{@key}}'
+    data-otf='M:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
+    {{{gurpslink name}}} <span>({{level}})</span></span>:
+{{else}}
+  <span class='gb-name'>{{name}}</span>:
+{{/if}}
+
+{{#each damage}}
+  {{! Damage and Reach could be: 
+    "1d cut."
+    "1d cut and 1d ctrl, Reach C."
+    "1d cut, Reach C." 
+    "1d cut, Reach 1 or 1d-1 imp, Reach 1."
+    "1d cut, and 1d toxic follow-up, Reach 1"
+    ""
+  }}
+  {{#if reach}}
+      {{#each damage}}
+        <span class='gb-damage rollable' data-damage
+          data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per {{../../cost}}{{/if}}{{#unless @last}} and {{/unless}}
+      {{else}}
+        {{#if damage}}
+          {{#each damage}}
+            <span class=' gb-damage rollable' data-damage
+              data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per {{../../cost}}{{/if}}{{#unless}} and {{/unless}}
+          {{else}}
+            <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per {{cost}}{{/if}}
+          {{/each}}
+        {{/if}}
+      {{/each}}
+      {{#if mode}}<span>({{mode}})</span>{{/if}},
+      {{#if followup}}<span>plus {{followup}} follow-up,</span>{{/if}}
+      Reach <span class='gb-reach'>{{reach}}</span>{{#unless @last}} <i>or</i>{{else}}.{{/unless}}
+  {{else}}
+    {{#if damage}}
+      <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if usage}}<span>
+          ({{usage}})</span>{{/if}}{{#if followup}}<span>plus
+          {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>{{else}}.{{/unless}}
+    {{/if}}
+  {{/if}}
+{{/each}}
+
+{{#if parry}}<span>Parry {{parry}}.</span>{{/if}}
+{{#if notes}}<span class='gb-notes'>{{{gurpslink notes}}}</span>{{/if}}
