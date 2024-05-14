@@ -1,0 +1,67 @@
+name: Release Creation
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      # get part of the tag after the `v`
+      - name: Extract tag version number
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+      # Substitute the Manifest and Download URLs in the module.json
+      - name: Substitute Manifest and Download Links For Versioned Ones
+        id: sub_manifest_link_version
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: 'module.json'
+        env:
+          esmodules: '["release.js"]'
+          version: ${{steps.get_version.outputs.version-without-v}}
+          protected: true
+          manifest: https://foundryvtt.s3.us-west-2.amazonaws.com/modules/nightmare-fuel-bestiaries/module.json
+
+      # Remove download URL for release versions
+      - name: Remove download URL for release versions
+        id: add_download_url
+        uses: bluwy/substitute-string-action@v1
+        with:
+          _input-file: 'module.json'
+          _format-key: '%%key%%'
+          _output-file: 'module.json'
+          tag: 'comment'
+          download: 'this property intentionally left blank'
+
+      # Update embedded version number
+      - name: Update module version number used in UI
+        id: update_embedded_version
+        uses: bluwy/substitute-string-action@v1
+        with:
+          _input-file: 'gb-quick-reference/scripts/init.js'
+          _format-key: '%%key%%'
+          _output-file: 'gb-quick-reference/scripts/init.js'
+          version: '${{ github.event.release.tag_name }}'
+
+      # Create a zip file with all files required by the module to add to the release
+      - run: zip -r ./module.zip module.json LICENSE assets/ packs/ scripts/ gb-quick-reference/assets gb-quick-reference/scripts gb-quick-reference/styles gb-quick-reference/templates
+
+      # Create a release for this specific version
+      - name: Update Release with Files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true # Set this to false if you want to prevent updating existing releases
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './module.json, ./module.zip'
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}

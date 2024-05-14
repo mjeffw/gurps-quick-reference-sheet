@@ -34,5 +34,8 @@
 	],
 	"styles": [
 		"./gb-quick-reference/styles/gb-quick-reference.css"
+	],
+	"esmodules": [
+		"release.js"
 	]
 }
