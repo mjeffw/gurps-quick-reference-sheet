@@ -50,7 +50,7 @@ jobs:
           version: '${{ github.event.release.tag_name }}'
 
       # Create a zip file with all files required by the module to add to the release
-      - run: zip -r ./module.zip module.json LICENSE assets/ packs/ scripts/ gb-quick-reference/assets gb-quick-reference/scripts gb-quick-reference/styles gb-quick-reference/templates
+      - run: zip -r ./module.zip module.json release.js gb-quick-reference/
 
       # Create a release for this specific version
       - name: Update Release with Files
