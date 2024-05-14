@@ -1,0 +1,23 @@
+name: gurps-quick-reference-sheet CI
+
+on:
+    release:
+        types: [released]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: zip -r ./gurps-quick-reference-sheet.zip module.json release.js gb-quick-reference/ 
+    - name: Create Release
+      id: create_latest_release
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        name: Latest
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: './module.json'
+        tag: latest

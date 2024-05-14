@@ -37,5 +37,8 @@
 	],
 	"esmodules": [
 		"release.js"
-	]
+	],
+	"url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
+	"manifest": "https://raw.githubusercontent.com/mjeffw/gurps-quick-reference-sheet/release/system.json",
+	"download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/1.0.2/system.zip"
 }
