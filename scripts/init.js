@@ -175,13 +175,13 @@ export default async function init(module) {
     return results
   })
 
-  fetch(`/modules/${module}/gb-quick-reference/templates/attack-ranged.hbs`)
+  fetch(`/modules/${module}/templates/attack-ranged.hbs`)
     .then(it => it.text())
     .then(async text => {
       Handlebars.registerPartial('gb-attack-ranged', text)
     })
 
-  fetch(`/modules/${module}/gb-quick-reference/templates/attack-melee.hbs`)
+  fetch(`/modules/${module}/templates/attack-melee.hbs`)
     .then(it => it.text())
     .then(async text => {
       Handlebars.registerPartial('gb-attack-melee', text)

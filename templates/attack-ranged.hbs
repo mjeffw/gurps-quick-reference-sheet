@@ -1,0 +1,36 @@
+<span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}' data-key='system.ranged.{{@key}}'
+  data-otf='R:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
+  {{{gurpslink name}}}{{#if level}}<span> ({{level}})</span>{{/if}}</span>:
+{{debug this}}
+
+{{#each damagecomponent}}
+{{#if damage}}
+{{#each damage}}
+<span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>
+{{#if ../../cost}} per {{../../cost}} energy{{/if}}
+{{#unless @last}} and {{/unless}}
+{{else}}
+<span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if ../cost}} per {{../cost}}
+energy{{/if}}{{/each}}{{#unless @last}}<i> or </i>{{else}}.{{/unless}}
+{{/if}}
+{{else}}
+{{#if damage}}
+<span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per {{cost}}
+energy{{/if}}.
+{{/if}}
+{{/each}}
+
+<span class='gb-reach'>Range {{range}}{{#if halfd}}/{{halfd}}{{/if}}.</span>
+{{#if acc}}
+<span class='gb-penalty gmod acc' data-name='Accuracy' data-otf='{{{displayNumber (gb-calculate acc)}}} Accuracy'>
+  {{{displayNumber acc showPlus=false}}}</span>{{#if (or shots bulk)}},{{else}}.{{/if}}
+{{/if}}
+{{#if shots}}
+<span class='gb-reach'>Shots {{shots}}{{#if bulk}},{{else}}.{{/if}}</span>
+{{/if}}
+{{#if bulk}}
+<span class='gb-penalty gmod bulk' data-name='Bulk' data-otf='{{bulk}} to hit for Bulk'>{{{displayNumber bulk}}}</span>.
+{{/if}}
+{{#if notes}}
+<span class='gb-notes'>{{{gurpslink notes}}}</span>
+{{/if}}

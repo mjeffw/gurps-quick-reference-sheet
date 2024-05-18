@@ -16,7 +16,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
 
   /** @override */
   get template() {
-    return `/modules/saethors-bane-dfrpg/gb-quick-reference/templates/gb-quickref-sheet.hbs`
+    return `/modules/gurps-quick-reference-sheet/templates/gb-quickref-sheet.hbs`
   }
 
   getData() {

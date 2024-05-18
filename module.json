@@ -28,15 +28,14 @@
 		{
 			"name": "M. Jeff Wilson",
 			"discord": "Nick Coffin, PI#8616",
-			"email": "nick.coffin_pi@icloud.com",
-			"flags": {}
+			"email": "nick.coffin_pi@icloud.com"
 		}
 	],
 	"styles": [
-		"./gb-quick-reference/styles/gb-quick-reference.css"
+		"./styles/gb-quick-reference.css"
 	],
 	"esmodules": [
-		"release.js"
+		"./gurps-quick-reference-sheet.js"
 	],
 	"url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
 	"manifest": "https://raw.githubusercontent.com/mjeffw/gurps-quick-reference-sheet/release/system.json",
