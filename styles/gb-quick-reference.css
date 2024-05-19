@@ -1,5 +1,5 @@
-:root {
-  --gb-standardSpacing: 8px;
+.gb-quick-reference {
+  --gb-standardSpacing: 0.4rem;
   --gb-heightTopBorder: 39px;
   --gb-backgroundSize: 100% var(--gb-heightTopBorder);
   --gb-headerColor: rgb(132, 27, 22);
@@ -16,8 +16,8 @@
   --gb-backgroundColorModifier: orange;
   --gb-backgroundColorModActive: rgb(158, 87, 0);
   --gb-pagerefhover: 0 0 5px lightcoral;
-  --gb-imageBorderTop: url(../assets/images/Saethors_Bane_Border_Top_Border.png);
-  --gb-imageBottomBorder: url(../assets/images/Saethors_Bane_Border_Bottom_Border.png);
+  --gb-imageBorderTop: url(../assets/images/gb_border_top.png);
+  --gb-imageBottomBorder: url(../assets/images/gb_border_bottom.png);
 }
 
 @font-face {
@@ -49,7 +49,7 @@
 .gb-quick-reference {
   margin-top: calc(var(--gb-standardSpacing) * -1);
   background-image: var(--gb-imageBorderTop);
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-size: var(--gb-backgroundSize);
   background-color: var(--gb-backgroundColor);
 }
@@ -103,7 +103,7 @@
 }
 
 .gb-quickref-sheet {
-  min-width: 640px;
+  min-width: auto;
 }
 
 .gb-quickref-sheet .window-content {
@@ -115,6 +115,8 @@
 
 .gb-quickref-sheet form {
   padding: var(--gb-heightTopBorder) var(--gb-standardSpacing) 0 var(--gb-standardSpacing);
+  /* transform: scale(0.75); */
+  /* transform-origin: 0 0; */
 }
 
 /* ==== default styles for elements ==== */
@@ -166,13 +168,13 @@
 
 .gb-quickref-sheet #sb-attrs {
   display: grid;
-  grid-template-columns: 120px min-content;
+  grid-template-columns: 8rem 1fr;
 }
 
 .gb-quickref-sheet .left-column {
   display: inline-flex;
   flex-flow: row nowrap;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .gb-quickref-sheet #portrait {
@@ -196,9 +198,9 @@
   grid-template-columns: min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr;
   grid-template-rows: auto auto auto;
   align-items: baseline;
-  gap: 0.15em;
+  gap: 0.15rem;
   font-size: 26px;
-  min-width: 3rem;
+  /* min-width: 3rem; */
 }
 
 .gb-quickref-sheet .sb-secondary-attrs {
@@ -210,7 +212,7 @@
 }
 
 .gb-quickref-sheet #gb-attributes-detail label {
-  min-width: 60px;
+  min-width: 3rem;
 }
 
 .gb-quickref-sheet #gb-attributes-detail label.gb-primary {
@@ -221,7 +223,7 @@
   color: var(--gb-headerColor);
 }
 
-.gb-quickref-sheet #gb-attributes-detail label + div {
+.gb-quickref-sheet #gb-attributes-detail label+div {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(100% * 0.9);
   text-align: center;
@@ -232,13 +234,13 @@
   font-family: SecondaryLabel, sans-serif;
   font-size: 20px;
   font-variant: none;
-  min-width: 48px;
+  /* min-width: 48px; */
 }
 
-.gb-quickref-sheet #gb-attributes-detail label.sb-secondary + div {
+.gb-quickref-sheet #gb-attributes-detail label.sb-secondary+div {
   font-family: Aramante, Roboto, sans-serif;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .gb-quickref-sheet select#move-mode:disabled {
@@ -266,7 +268,7 @@
   white-space: nowrap;
 }
 
-.gb-quickref-sheet .sb-secondary-attrs > div {
+.gb-quickref-sheet .sb-secondary-attrs>div {
   display: inline-flex;
   flex-flow: row nowrap;
   justify-items: center;
@@ -280,7 +282,7 @@
   justify-content: space-around;
 }
 
-.gb-quickref-sheet #trackers > div {
+.gb-quickref-sheet #trackers>div {
   width: calc(100% / 4 - 1rem);
 }
 
@@ -450,6 +452,8 @@
 .gb-quickref-sheet #gb-footer .gb-value {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(24px * 0.9);
+  width: 100%;
+  text-align: center;
 }
 
 .gb-quickref-sheet #gb-footer .gb-label {
@@ -503,6 +507,8 @@
 .gb-quickref-sheet .gb-defense-container {
   display: flex;
   flex-flow: row nowrap;
+  justify-items: stretch;
+  width: 100%;
 }
 
 .gb-quickref-sheet #pageref {

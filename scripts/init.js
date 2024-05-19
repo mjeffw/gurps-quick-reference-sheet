@@ -23,7 +23,7 @@ export default async function init(module) {
     return value === 0 ? 0 : value
   })
 
-  // TODO Can be replaed with the "tracker" helper from the GURPS system after it is updated.
+  // TODO Can be replaced with the "tracker" helper from the GURPS system after it is updated.
   Handlebars.registerHelper('gb-tracker', function (data, trackerName) {
     if (!!data && !!data.additionalresources?.tracker) {
       // find the tracker with name
@@ -66,7 +66,7 @@ export default async function init(module) {
    * The expected input is a string that can be parsed into <number>+<number> after removing all spaces.
    */
   Handlebars.registerHelper('gb-calculate', function (formula, options) {
-    const ADD_INTS = /^\s*(?<left>(?:[\-\–]?[0-9]+))\s*\+\s*(?<right>(?:[\-\–]?[0-9]+))\s*$/i
+    const ADD_INTS = /^\s*(?<left>(?:[-–]?\d+))\s*\+\s*(?<right>(?:[-–]?\d+))\s*$/i
     const matches = formula.toString().match(ADD_INTS)
     if (matches) {
       const left = parseInt(matches.groups.left)
@@ -125,43 +125,14 @@ export default async function init(module) {
       // if damage looks like <damage>/<number>point<s> then set damage to <damage> and cost to <number>
       const regex = /(?<damage>.*?)\/(?<points>\d+)?\s*point(?:s)?/
       if (ranged.damage.match(regex)) {
-        const groups = ranged.damage.match(regex).groups
-        ranged.damage = `+${groups.damage}`
-        ranged.cost = +(groups.points || 1)
+        convertToDamageAccum(ranged, regex)
       }
 
-      let item = {
-        name: ranged.name,
-        level: ranged.level,
-        notes: ranged.notes,
-        acc: ranged.acc,
-        bulk: ranged.bulk,
-        range: ranged.range,
-        shots: ranged.shots,
-        rcl: ranged.rcl,
-        cost: ranged.cost,
-        damagecomponent: [
-          {
-            damage: ranged.damage,
-            followup: ranged.followup,
-            damagenotes: ranged.damagenotes,
-          },
-        ],
-      }
+      let item = createRangedItem(ranged)
 
       for (let j = 0; j < array.length; j++) {
         if (j !== i && array[j] !== null)
-          if (
-            ranged.name === array[j].name &&
-            ranged.level === array[j].level &&
-            ranged.notes === array[j].notes &&
-            ranged.acc === array[j].acc &&
-            ranged.bulk === array[j].bulk &&
-            ranged.range === array[j].range &&
-            ranged.shots === array[j].shots &&
-            ranged.rcl === array[j].rcl &&
-            ranged.cost === array[j].cost
-          ) {
+          if (isValidRanged(ranged, array, j)) {
             item.damagecomponent.push({
               damage: array[j].damage,
               followup: array[j].followup,
@@ -195,6 +166,45 @@ export default async function init(module) {
     label: 'GB Quick Reference Sheet',
     makeDefault: true,
   })
+
+  function convertToDamageAccum(ranged, regex) {
+    const groups = ranged.damage.match(regex).groups
+    ranged.damage = `+${groups.damage}`
+    ranged.cost = +(groups.points || 1)
+  }
+
+  function isValidRanged(ranged, array, j) {
+    return ranged.name === array[j].name &&
+      ranged.level === array[j].level &&
+      ranged.notes === array[j].notes &&
+      ranged.acc === array[j].acc &&
+      ranged.bulk === array[j].bulk &&
+      ranged.range === array[j].range &&
+      ranged.shots === array[j].shots &&
+      ranged.rcl === array[j].rcl &&
+      ranged.cost === array[j].cost
+  }
+
+  function createRangedItem(ranged) {
+    return {
+      name: ranged.name,
+      level: ranged.level,
+      notes: ranged.notes,
+      acc: ranged.acc,
+      bulk: ranged.bulk,
+      range: ranged.range,
+      shots: ranged.shots,
+      rcl: ranged.rcl,
+      cost: ranged.cost,
+      damagecomponent: [
+        {
+          damage: ranged.damage,
+          followup: ranged.followup,
+          damagenotes: ranged.damagenotes,
+        },
+      ],
+    }
+  }
 }
 
 /**
