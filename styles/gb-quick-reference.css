@@ -166,6 +166,7 @@
 .gb-quickref-sheet #sb-attrs {
   display: grid;
   grid-template-columns: 8rem 1fr;
+  gap: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet .left-column {
@@ -272,14 +273,15 @@
 }
 
 .gb-quickref-sheet #trackers {
-  display: inline-flex;
+  display: inline-grid;
   gap: 0.5rem;
   justify-content: space-around;
   margin-top: var(--gb-standardSpacing);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .gb-quickref-sheet #trackers>div {
-  width: calc(100% / 4 - 1rem);
+  /* width: calc(100% / 4 - 1rem); */
 }
 
 .gb-quickref-sheet #trackers input {
