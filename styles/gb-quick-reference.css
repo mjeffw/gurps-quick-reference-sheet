@@ -18,6 +18,13 @@
   --gb-pagerefhover: 0 0 5px lightcoral;
   --gb-imageBorderTop: url(../assets/images/gb_border_top.png);
   --gb-imageBottomBorder: url(../assets/images/gb_border_bottom.png);
+
+  margin-top: calc(var(--gb-standardSpacing) * -1);
+  background-image: var(--gb-imageBorderTop);
+  background-repeat: repeat-x;
+  background-size: var(--gb-backgroundSize);
+  background-color: var(--gb-backgroundColor);
+
 }
 
 @font-face {
@@ -44,14 +51,6 @@
 @font-face {
   font-family: SecondaryLabel;
   src: url(../assets/fonts/MyriadPro-BoldCond.otf);
-}
-
-.gb-quick-reference {
-  margin-top: calc(var(--gb-standardSpacing) * -1);
-  background-image: var(--gb-imageBorderTop);
-  background-repeat: repeat-x;
-  background-size: var(--gb-backgroundSize);
-  background-color: var(--gb-backgroundColor);
 }
 
 .gb-quick-reference #bottom-border {
@@ -115,8 +114,6 @@
 
 .gb-quickref-sheet form {
   padding: var(--gb-heightTopBorder) var(--gb-standardSpacing) 0 var(--gb-standardSpacing);
-  /* transform: scale(0.75); */
-  /* transform-origin: 0 0; */
 }
 
 /* ==== default styles for elements ==== */
@@ -174,7 +171,6 @@
 .gb-quickref-sheet .left-column {
   display: inline-flex;
   flex-flow: row nowrap;
-  /* align-items: center; */
 }
 
 .gb-quickref-sheet #portrait {
@@ -187,6 +183,7 @@
 
 .gb-quickref-sheet .img-display img {
   border: none;
+  filter: drop-shadow(2px 4px 4px grey);
 }
 
 .gb-quickref-sheet #portrait .sharebutton {
@@ -200,7 +197,6 @@
   align-items: baseline;
   gap: 0.15rem;
   font-size: 26px;
-  /* min-width: 3rem; */
 }
 
 .gb-quickref-sheet .sb-secondary-attrs {
@@ -234,7 +230,6 @@
   font-family: SecondaryLabel, sans-serif;
   font-size: 20px;
   font-variant: none;
-  /* min-width: 48px; */
 }
 
 .gb-quickref-sheet #gb-attributes-detail label.sb-secondary+div {
@@ -280,6 +275,7 @@
   display: inline-flex;
   gap: 0.5rem;
   justify-content: space-around;
+  margin-top: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet #trackers>div {
@@ -309,6 +305,7 @@
 
 .gb-quickref-sheet #gb-attacks {
   column-gap: var(--gb-standardSpacing);
+  column-count: 2;
 }
 
 .gb-quickref-sheet #gb-traits-skills {
@@ -517,14 +514,11 @@
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  font-family: 'Aramante', 'Roboto';
+  font-family: 'Aramante', 'Roboto', sans-serif;
   margin-bottom: 10px;
   text-shadow: none;
 }
 
-.gb-quickref-sheet #gb-attacks {
-  column-count: 2;
-}
 
 .gb-quickref-sheet #gb-attacks[data-attacks='0'],
 .gb-quickref-sheet #gb-attacks[data-attacks='1'],
