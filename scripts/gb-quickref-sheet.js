@@ -6,7 +6,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ['gb-quickref-sheet', 'sheet', 'actor'],
-      width: 640,
+      width: 560,
       height: 800,
       dragDrop: [{ dragSelector: '.item-list .item', dropSelector: null }],
     })

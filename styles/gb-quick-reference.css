@@ -103,7 +103,7 @@
 }
 
 .gb-quickref-sheet {
-  min-width: auto;
+  min-width: 400px;
 }
 
 .gb-quickref-sheet .window-content {
@@ -226,7 +226,7 @@
 .gb-quickref-sheet #gb-attributes-detail label+div {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(100% * 0.9);
-  text-align: center;
+  text-align: left;
 }
 
 .gb-quickref-sheet #gb-attributes-detail label.sb-secondary {
