@@ -129,23 +129,36 @@
             <label>Current FP</label>
           </div>
           {{! Control Points Tracker }}
+          {{#with (gb-tracker data 'Control Points' )}}
           <div class='label-below'>
-            {{#with (gb-tracker data 'Control Points' )}}
-            <input type='text' id='cp' class='digits-only'
-              name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
-            {{/with}}
+            <div id='cp-container' class='with-button'>
+              <input type='text' id='cp' class='digits-only'
+                name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
+              <button name='tracker-reset'>
+                <span class='fas fa-rotate-left {{optionSetStyle system.conditions.exhausted}}'
+                  data-action='reset'></span>
+              </button>
+            </div>
             <label>Control Points</label>
           </div>
+          {{/with}}
+
           {{! Energy Reserve Tracker }}
+          {{#if (gb-tracker data 'Energy Reserve')}}
+          {{#with (gb-tracker data 'Energy Reserve')}}
           <div class='label-below'>
-            {{#if (gb-tracker data 'Energy Reserve')}}
-            {{#with (gb-tracker data 'Energy Reserve')}}
-            <input type='text' id='cp' class='digits-only'
-              name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
-            {{/with}}
+            <div id='cp-container' class='with-button'>
+              <input type='text' id='cp' class='digits-only'
+                name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
+              <button name='tracker-reset'>
+                <span class='fas fa-rotate-left {{optionSetStyle system.conditions.exhausted}}'
+                  data-action='reset'></span>
+              </button>
+            </div>
             <label for='energy' style="grid-column: 4 / 8;">Energy Reserve</label>
-            {{/if}}
           </div>
+          {{/with}}
+          {{/if}}
         </div>
       </div>
     </div>
