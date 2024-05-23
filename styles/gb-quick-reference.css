@@ -280,14 +280,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.gb-quickref-sheet #trackers>div {
-  /* width: calc(100% / 4 - 1rem); */
-}
-
 .gb-quickref-sheet #trackers input {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(20px * 0.9);
-  text-align: right;
+  text-align: center;
 }
 
 .gb-quickref-sheet .with-button button {
@@ -526,4 +522,9 @@
 .gb-quickref-sheet #gb-attacks[data-attacks='1'],
 .gb-quickref-sheet #gb-attacks[data-attacks='2'] {
   column-count: 1;
+}
+
+.gb-quickref-sheet input[type=number].spinner::-webkit-inner-spin-button,
+.gb-quickref-sheet input[type=number].spinner::-webkit-outer-spin-button {
+  opacity: 1;
 }
