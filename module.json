@@ -1,7 +1,7 @@
 {
   "id": "gurps-quick-reference-sheet",
   "title": "Gaming Ballistic's GURPS Quick Reference Character Sheet",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.1",
   "compatibility": {
     "minimum": "11",
     "verified": "11"
