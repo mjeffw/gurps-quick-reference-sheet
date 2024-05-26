@@ -172,6 +172,7 @@
 .gb-quickref-sheet #sb-attrs {
   display: grid;
   grid-template-columns: 8rem 1fr;
+  gap: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet .left-column {
@@ -225,7 +226,7 @@
   color: var(--gb-headerColor);
 }
 
-.gb-quickref-sheet #gb-attributes-detail label + div {
+.gb-quickref-sheet #gb-attributes-detail label+div {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(100% * 0.9);
   text-align: left;
@@ -238,7 +239,7 @@
   font-variant: none;
 }
 
-.gb-quickref-sheet #gb-attributes-detail label.sb-secondary + div {
+.gb-quickref-sheet #gb-attributes-detail label.sb-secondary+div {
   font-family: Aramante, Roboto, sans-serif;
   text-align: center;
   font-size: 1.2rem;
@@ -269,7 +270,7 @@
   white-space: nowrap;
 }
 
-.gb-quickref-sheet .sb-secondary-attrs > div {
+.gb-quickref-sheet .sb-secondary-attrs>div {
   display: inline-flex;
   flex-flow: row nowrap;
   justify-items: center;
@@ -278,20 +279,17 @@
 }
 
 .gb-quickref-sheet #trackers {
-  display: inline-flex;
+  display: inline-grid;
   gap: 0.5rem;
   justify-content: space-around;
   margin-top: var(--gb-standardSpacing);
-}
-
-.gb-quickref-sheet #trackers > div {
-  width: calc(100% / 4 - 1rem);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .gb-quickref-sheet #trackers input {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(20px * 0.9);
-  text-align: right;
+  text-align: center;
 }
 
 .gb-quickref-sheet .with-button button {
@@ -529,4 +527,9 @@
 .gb-quickref-sheet #gb-attacks[data-attacks='1'],
 .gb-quickref-sheet #gb-attacks[data-attacks='2'] {
   column-count: 1;
+}
+
+.gb-quickref-sheet input[type=number].spinner::-webkit-inner-spin-button,
+.gb-quickref-sheet input[type=number].spinner::-webkit-outer-spin-button {
+  opacity: 1;
 }

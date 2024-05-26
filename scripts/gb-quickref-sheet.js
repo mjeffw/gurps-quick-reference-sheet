@@ -103,6 +103,9 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
         $(this).find('div').last().remove()
       }
     )
+
+    // ============================
+    // ============================
   }
 
   async _onClickRollableIcon(ev) {
