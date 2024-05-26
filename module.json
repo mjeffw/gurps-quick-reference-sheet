@@ -1,43 +1,39 @@
 {
-	"id": "gurps-quick-reference-sheet",
-	"title": "Gaming Ballistic's GURPS Quick Reference Character Sheet",
-	"version": "1.0.0",
-	"compatibility": {
-		"minimum": "11",
-		"verified": "11"
-	},
-	"relationships": {
-		"systems": [
-			{
-				"id": "gurps",
-				"type": "system",
-				"compatibility": {
-					"minimum": "0.16.10",
-					"verified": "0.16.10"
-				}
-			}
-		]
-	},
-	"authors": [
-		{
-			"name": "Douglas Cole",
-			"url": "https://gaming-ballistic.myshopify.com",
-			"patreon": "https://www.patreon.com/GamingBallistic",
-			"discord": "Douglas (Gaming Ballistic)#2658"
-		},
-		{
-			"name": "M. Jeff Wilson",
-			"discord": "Nick Coffin, PI#8616",
-			"email": "nick.coffin_pi@icloud.com"
-		}
-	],
-	"styles": [
-		"./styles/gb-quick-reference.css"
-	],
-	"esmodules": [
-		"./gurps-quick-reference-sheet.js"
-	],
-	"url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
-	"manifest": "https://raw.githubusercontent.com/mjeffw/gurps-quick-reference-sheet/release/system.json",
-	"download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/1.0.2/system.zip"
+  "id": "gurps-quick-reference-sheet",
+  "title": "Gaming Ballistic's GURPS Quick Reference Character Sheet",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "gurps",
+        "type": "system",
+        "compatibility": {
+          "minimum": "0.16.10",
+          "verified": "0.16.10"
+        }
+      }
+    ]
+  },
+  "authors": [
+    {
+      "name": "Douglas Cole",
+      "url": "https://gaming-ballistic.myshopify.com",
+      "patreon": "https://www.patreon.com/GamingBallistic",
+      "discord": "Douglas (Gaming Ballistic)#2658"
+    },
+    {
+      "name": "M. Jeff Wilson",
+      "discord": "Nick Coffin, PI#8616",
+      "email": "nick.coffin_pi@icloud.com"
+    }
+  ],
+  "styles": ["./styles/gb-quick-reference.css"],
+  "esmodules": ["./gurps-quick-reference-sheet.js"],
+  "url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
+  "manifest": "https://raw.githubusercontent.com/mjeffw/gurps-quick-reference-sheet/release/system.json",
+  "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/1.0.2/system.zip"
 }

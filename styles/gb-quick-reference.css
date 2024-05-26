@@ -67,13 +67,6 @@
 .gb-quickref-sheet form {
   padding: 0 var(--gb-standardSpacing) 0 var(--gb-standardSpacing);
   background-color: var(--gb-backgroundColor);
-  /* background-image: var(--gb-imageBorderTop); */
-  /* background-repeat: no-repeat; */
-  /* background-size: var(--gb-backgroundSize); */
-  /* background-position: 0 0; */
-  /* filter: drop-shadow(2px 4px 6px black); */
-  /* -webkit-filter: drop-shadow(var(--gb-dropshadow)); */
-  /* z-index: 0; */
 }
 
 .gb-quick-reference #bottom-border {
@@ -150,7 +143,7 @@
   color: black;
   text-align: center;
   border-bottom: 3px solid var(--gb-headerColor);
-  margin: 0 calc(var(--gb-standardSpacing) * 3) var(--gb-standardSpacing) ;
+  margin: 0 calc(var(--gb-standardSpacing) * 3) var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet h3 {

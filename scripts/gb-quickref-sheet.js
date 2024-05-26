@@ -83,7 +83,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     document
       .querySelector('.gb-quick-reference')
       .style.setProperty('--labelBulk', `"${game.i18n.localize('GURPS.bulk')} "`)
-    document.querySelector('.gb-quick-reference').click((ev) => {
+    document.querySelector('.gb-quick-reference').click(ev => {
       this._onfocus(ev)
     })
 

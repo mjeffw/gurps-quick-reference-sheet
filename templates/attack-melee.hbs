@@ -7,14 +7,6 @@
 {{/if}}
 
 {{#each damage}}
-  {{! Damage and Reach could be: 
-    "1d cut."
-    "1d cut and 1d ctrl, Reach C."
-    "1d cut, Reach C." 
-    "1d cut, Reach 1 or 1d-1 imp, Reach 1."
-    "1d cut, and 1d toxic follow-up, Reach 1"
-    ""
-  }}
   {{#if reach}}
       {{#each damage}}
         <span class='gb-damage rollable' data-damage
