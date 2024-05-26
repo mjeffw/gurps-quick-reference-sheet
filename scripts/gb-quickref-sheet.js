@@ -91,19 +91,6 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     html.find('.gb-move').click(this._onClickMove.bind(this))
     html.find('.gb-link').click(this._handleOnPdfLink.bind(this))
 
-    html.find('[data-onethird]').hover(
-      function () {
-        let opt = $(this).attr('data-onethird')
-        let msg = 'Disable&nbsp;' + opt
-        if ($(this).hasClass('buttongrey')) msg = 'Enable&nbsp;' + opt
-        $(this).find('div').last().remove()
-        $(this).append($(`<div class="hover-help">${msg}</div>`))
-      },
-      function () {
-        $(this).find('div').last().remove()
-      }
-    )
-
     // ============================
     // ============================
   }
