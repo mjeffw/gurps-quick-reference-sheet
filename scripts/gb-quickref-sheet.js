@@ -4,7 +4,7 @@ const handlePdf = GURPS.handlePdf
 export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['gb-quickref-sheet', 'sheet', 'actor'],
       width: 590,
       height: 800,
@@ -22,12 +22,12 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   getData() {
     const data = super.getData()
 
-    data.pageref = getProperty(this.actor, 'flags.gurps.pageref')
-    data.copyright = getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024 Gaming Ballistic, LLC'
+    data.pageref = foundry.utils.getProperty(this.actor, 'flags.gurps.pageref')
+    data.copyright = foundry.utils.getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024 Gaming Ballistic, LLC'
     data.torso = this.actor.getTorsoDr()
     data.parryblock = this.actor.getEquippedParry()
 
-    switch (getProperty(this.actor, 'flags.gurps.book')) {
+    switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
         data.cssClass = `${data.cssClass} bugstiary`
         break
