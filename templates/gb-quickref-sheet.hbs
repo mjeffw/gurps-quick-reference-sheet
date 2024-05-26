@@ -1,6 +1,8 @@
 <form class='gb-quick-reference {{cssClass}}' autocomplete='off'>
   <div style='display: flex; flex-flow: column nowrap; height: calc(100% - 113px);'>
-
+    <div class="gb-top-border">
+      <img class='gb-logo' src='modules/gurps-quick-reference-sheet/assets/images/gb_border_top.webp'/>
+    </div>
     <h1>{{#if system.traits.title}}{{system.traits.title}} {{/if}}{{actor.name}}<span class="subtype">
         {{#if system.traits.subtype}}({{system.traits.subtype}}){{/if}}</span>
     </h1>
@@ -16,7 +18,7 @@
             <button class='sharebutton' data-operation='share-portrait'>{{localize 'GURPS.share'}}</button>
             {{/if}}
           </div>
-        </div>
+        </div> 
       </div>
 
       <div class='right-column'>

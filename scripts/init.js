@@ -174,7 +174,8 @@ export default async function init(module) {
   }
 
   function isValidRanged(ranged, array, j) {
-    return ranged.name === array[j].name &&
+    return (
+      ranged.name === array[j].name &&
       ranged.level === array[j].level &&
       ranged.notes === array[j].notes &&
       ranged.acc === array[j].acc &&
@@ -183,6 +184,7 @@ export default async function init(module) {
       ranged.shots === array[j].shots &&
       ranged.rcl === array[j].rcl &&
       ranged.cost === array[j].cost
+    )
   }
 
   function createRangedItem(ranged) {

@@ -1,7 +1,6 @@
 <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}' data-key='system.ranged.{{@key}}'
   data-otf='R:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
   {{{gurpslink name}}}{{#if level}}<span> ({{level}})</span>{{/if}}</span>:
-{{debug this}}
 
 {{#each damagecomponent}}
 {{#if damage}}
@@ -24,7 +23,7 @@ energy{{/if}}.
 {{#if acc}}
 <span class='gb-penalty gmod acc' data-name='Accuracy' data-otf='{{{displayNumber (gb-calculate acc)}}} Accuracy'>
   {{{displayNumber acc showPlus=false}}}</span>{{#if (or shots bulk)}},{{else}}.{{/if}}
-{{/if}}
+{{/if}} 
 {{#if shots}}
 <span class='gb-reach'>Shots {{shots}}{{#if bulk}},{{else}}.{{/if}}</span>
 {{/if}}
