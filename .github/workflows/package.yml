@@ -1,27 +1,26 @@
 name: gurps-quick-reference-sheet CI
 
 on:
-  push:
-    tags:
-      - v*
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Update Version
-      shell: bash
-      id: set-version
-      run: echo "::set-output name=version::$(node ./.github/workflows/set-version.js ${{ github.ref }})"
-    - run: zip -r ./gurps-quick-reference-sheet.zip module.json release.js assets/ scripts/ styles/ templates/ gurps-quick-reference-sheet.js
-    - name: Create Release
-      id: create_versioned_release
-      uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true
-        name: Release ${{ steps.set-version.outputs.version }}
-        draft: false
-        prerelease: false
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './module.json,./gurps-quick-reference-sheet.zip'
+      - uses: actions/checkout@v2
+      - name: Update Version
+        shell: bash
+        id: set-version
+        run: echo "::set-output name=version::$(node ./.github/workflows/set-version.js ${{ github.ref }})"
+      - run: zip -r ./gurps-quick-reference-sheet.zip module.json release.js assets/ scripts/ styles/ templates/ gurps-quick-reference-sheet.js
+      - name: Create Release
+        id: create_versioned_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: Release ${{ steps.set-version.outputs.version }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './module.json,./gurps-quick-reference-sheet.zip'
