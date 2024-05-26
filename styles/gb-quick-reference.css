@@ -292,13 +292,13 @@
   text-align: center;
 }
 
-.gb-quickref-sheet .with-button button {
+.gb-quickref-sheet .with-button button:first-of-type {
   right: unset;
   left: 0.35em;
 }
 
 .gb-quickref-sheet .with-button input {
-  padding: 1px 3px 1px 1.5rem;
+  padding: 1px 1.5rem 1px 1.5rem;
 }
 
 .gb-quickref-sheet hr {

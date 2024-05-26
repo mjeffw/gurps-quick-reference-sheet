@@ -1,9 +1,9 @@
 <form class='gb-quick-reference {{cssClass}}' autocomplete='off'>
   <div style='display: flex; flex-flow: column nowrap; height: calc(100% - 113px);'>
-    <div class="gb-top-border">
-      <img class='gb-logo' src='modules/gurps-quick-reference-sheet/assets/images/gb_border_top.webp'/>
+    <div class='gb-top-border'>
+      <img class='gb-logo' src='modules/gurps-quick-reference-sheet/assets/images/gb_border_top.webp' />
     </div>
-    <h1>{{#if system.traits.title}}{{system.traits.title}} {{/if}}{{actor.name}}<span class="subtype">
+    <h1>{{#if system.traits.title}}{{system.traits.title}} {{/if}}{{actor.name}}<span class='subtype'>
         {{#if system.traits.subtype}}({{system.traits.subtype}}){{/if}}</span>
     </h1>
 
@@ -15,34 +15,39 @@
               <img class='profile-img' src='{{actor.img}}' data-edit='img' title='{{actor.name}}' />
             </div>
             {{#if isGM}}
-            <button class='sharebutton' data-operation='share-portrait'>{{localize 'GURPS.share'}}</button>
+              <button class='sharebutton' data-operation='share-portrait'>{{localize 'GURPS.share'}}</button>
             {{/if}}
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class='right-column'>
         <div id='gb-attributes-detail'>
           {{#with system.attributes}}
-          {{! ST, DX, IQ, HT }}
-          <label class='gb-primary' for='st'>{{localize 'GURPS.attributesST'}}</label>
-          <div id='st' class='gb-value gb-primary rollable' data-otf='ST' draggable='true'>{{ST.value}}</div>
+            {{! ST, DX, IQ, HT }}
+            <label class='gb-primary' for='st'>{{localize 'GURPS.attributesST'}}</label>
+            <div id='st' class='gb-value gb-primary rollable' data-otf='ST' draggable='true'>{{ST.value}}</div>
 
-          <label class='gb-primary' for='dx'>{{localize 'GURPS.attributesDX'}}</label>
-          <div id='dx' class='gb-value gb-primary rollable' data-otf='DX' draggable='true'>{{DX.value}}</div>
+            <label class='gb-primary' for='dx'>{{localize 'GURPS.attributesDX'}}</label>
+            <div id='dx' class='gb-value gb-primary rollable' data-otf='DX' draggable='true'>{{DX.value}}</div>
 
-          <label class='gb-primary' for='iq'>{{localize 'GURPS.attributesIQ'}}</label>
-          <div id='iq' class='gb-value gb-primary rollable' data-otf='IQ' draggable='true'>
-            {{#if (eq IQ.import '—')}}—{{else}}{{IQ.value}}{{/if}}
-          </div>
+            <label class='gb-primary' for='iq'>{{localize 'GURPS.attributesIQ'}}</label>
+            <div id='iq' class='gb-value gb-primary rollable' data-otf='IQ' draggable='true'>
+              {{#if (eq IQ.import '—')}}—{{else}}{{IQ.value}}{{/if}}
+            </div>
 
-          <label class='gb-primary' for='ht'>{{localize 'GURPS.attributesHT'}}</label>
-          <div id='ht' class='gb-value gb-primary rollable' data-otf='HT' draggable='true'>{{HT.value}}</div>
+            <label class='gb-primary' for='ht'>{{localize 'GURPS.attributesHT'}}</label>
+            <div id='ht' class='gb-value gb-primary rollable' data-otf='HT' draggable='true'>{{HT.value}}</div>
           {{/with}}
           {{! Size Modifier }}
           <label class='sb-secondary' for='sm'>SM</label>
-          <div id='sm' class='gb-value penalty gmod' data-name='for Size Modifier'
-            data-otf='{{system.traits.sizemod}} for Size Modifier' draggable='true'>
+          <div
+            id='sm'
+            class='gb-value penalty gmod'
+            data-name='for Size Modifier'
+            data-otf='{{system.traits.sizemod}} for Size Modifier'
+            draggable='true'
+          >
             {{{displayNumber system.traits.sizemod}}}
           </div>
 
@@ -75,8 +80,12 @@
               <div id='dmg' class='gb-value secondary' style='display: flex; flex-flow: row nowrap'>
                 <div class='rollable' data-damage data-otf='{{system.thrust}} dmg'>{{system.thrust}}</div>
                 /
-                <div class='rollable' style='display: flex; flex-flow: row nowrap' data-damage
-                  data-otf='{{system.swing}} dmg'>
+                <div
+                  class='rollable'
+                  style='display: flex; flex-flow: row nowrap'
+                  data-damage
+                  data-otf='{{system.swing}} dmg'
+                >
                   {{system.swing}}
                 </div>
               </div>
@@ -90,17 +99,17 @@
               <div style='display: flex; flex-flow: row nowrap; justify-content: center'>
                 <div class='gb-value secondary'>{{invoke document method='getCurrentMove'}}</div>
                 {{#with (invoke document method='_getCurrentMoveMode')}}
-                {{#if enhanced}}
-                <div class='gb-value secondary'>/</div>
-                <div class='gb-value secondary'>{{enhanced}}</div>
-                {{/if}}
-                <div class='gb-value secondary'>&nbsp;({{basic}})</div>
+                  {{#if enhanced}}
+                    <div class='gb-value secondary'>/</div>
+                    <div class='gb-value secondary'>{{enhanced}}</div>
+                  {{/if}}
+                  <div class='gb-value secondary'>&nbsp;({{basic}})</div>
                 {{/with}}
               </div>
             </div>
             <select id='move-mode' {{disabled (lt (length system.move) 2)}}>
               {{#each system.move}}
-              <option value='{{@key}}' {{select-if default true}}>{{i18n mode mode}}</option>
+                <option value='{{@key}}' {{select-if default true}}>{{i18n mode mode}}</option>
               {{/each}}
             </select>
           </div>
@@ -108,59 +117,86 @@
         <div id='trackers'>
           {{! HP Tracker }}
           <div class='label-below'>
-            <div id='hp-container' class='with-button'>
+            <div id='hp-container' class='with-button' data-gurps-resource='HP'>
+              <button data-operation='resource-reset'>
+                <span class='fas fa-rotate-left'></span>
+              </button>
               <button name='reeling'>
-                <span class='fas fa-heartbeat {{optionSetStyle system.conditions.reeling}}'
-                  data-onethird='reeling'></span>
+                <span
+                  class='fas fa-heartbeat {{optionSetStyle system.conditions.reeling}}'
+                  data-onethird='reeling'
+                ></span>
               </button>
               <input type='number' id='hp' class='digits-only' value='{{system.HP.value}}' name='system.HP.value' />
             </div>
             <label>Current HP</label>
           </div>
+          
           {{! FP Tracker }}
           <div class='label-below'>
-            <div id='fp-container' class='with-button'>
+            <div id='fp-container' class='with-button' data-gurps-resource='FP'>
               {{#if (ne system.FP.max '–')}}
-              <input type='number' id='fp' class='digits-only' value='{{system.FP.value}}' name='system.FP.value' />
-              <button name='exhausted'>
-                <span class='fas fa-lungs {{optionSetStyle system.conditions.exhausted}}'
-                  data-onethird='exhausted'></span>
-              </button>
+                <input type='number' id='fp' class='digits-only' value='{{system.FP.value}}' name='system.FP.value' />
+                <button data-operation='resource-reset'>
+                  <span class='fas fa-rotate-left'></span>
+                </button>
+                <button name='exhausted'>
+                  <span
+                    class='fas fa-lungs {{optionSetStyle system.conditions.exhausted}}'
+                    data-onethird='exhausted'
+                  ></span>
+                </button>
               {{/if}}
             </div>
             <label>Current FP</label>
           </div>
 
           {{! Control Points Tracker }}
-          {{#with (gb-tracker data 'Control Points' )}}
-          <div class='label-below'>
-            <div id='cp-container' class='with-button'
-              data-gurps-resource="additionalresources.tracker.{{zeroFill key 4}}">
-              <input type='text' id='cp' class='digits-only'
-                name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
-              <button data-operation="resource-reset">
-                <span class='fas fa-rotate-left'></span>
-              </button>
+          {{#with (gb-tracker data 'Control Points')}}
+            <div class='label-below'>
+              <div
+                id='cp-container'
+                class='with-button'
+                data-gurps-resource='additionalresources.tracker.{{zeroFill key 4}}'
+              >
+                <input
+                  type='text'
+                  id='cp'
+                  class='digits-only'
+                  name='system.additionalresources.tracker.{{zeroFill key 4}}.value'
+                  value='{{value}}'
+                />
+                <button data-operation='resource-reset'>
+                  <span class='fas fa-rotate-left'></span>
+                </button>
+              </div>
+              <label>Control Points</label>
             </div>
-            <label>Control Points</label>
-          </div>
           {{/with}}
 
           {{! Energy Reserve Tracker }}
           {{#if (gb-tracker data 'Energy Reserve')}}
-          {{#with (gb-tracker data 'Energy Reserve')}}
-          <div class='label-below'>
-            <div id='{{name}}-container' class='with-button'
-              data-gurps-resource="additionalresources.tracker.{{zeroFill key 4}}">
-              <input type='number' id='{{name}}' class='spinner'
-                name='system.additionalresources.tracker.{{zeroFill key 4}}.value' value='{{value}}' />
-              <button data-operation="resource-reset">
-                <span class='fas fa-rotate-left'></span>
-              </button>
-            </div>
-            <label for='energy' style="grid-column: 4 / 8;">Energy Reserve</label>
-          </div>
-          {{/with}}
+            {{#with (gb-tracker data 'Energy Reserve')}}
+              <div class='label-below'>
+                <div
+                  id='{{name}}-container'
+                  class='with-button'
+                  data-gurps-resource='additionalresources.tracker.{{zeroFill key 4}}'
+                >
+                  <input
+                    type='number'
+                    id='{{name}}'
+                    class='spinner'
+                    name='system.additionalresources.tracker.{{zeroFill key 4}}.value'
+                    value='{{value}}'
+                  />
+                  <button data-operation='resource-reset'>
+                    <span class='fas fa-rotate-left'></span>
+                  </button>
+                </div>
+                <label for='energy' style='grid-column: 4 / 8;'>Energy Reserve</label>
+              </div>
+            {{/with}}
           {{/if}}
 
         </div>
@@ -169,199 +205,231 @@
     <hr />
 
     {{#unless (and (empty system.melee) (empty system.ranged))}}
-    <h2>Attacks</h2>
-    {{#with (gb-sort
-    (gb-mergeLists (gb-collapseRanged (gb-entries system.ranged)) (gb-collapseMelee (gb-entries system.melee)))
-    sortfield='name'
-    )}}
-    <div id='gb-attacks' data-attacks='{{this.length}}'>
-      <ul>
-        {{#each this}}
-        {{#if this.range}}
-        <li class='gb-attack'>{{> gb-attack-ranged}}</li>
-        {{else}}
-        <li class='gb-attack'>{{> gb-attack-melee}}</li>
-        {{/if}}
-        {{/each}}
-      </ul>
-    </div>
-    {{/with}}
+      <h2>Attacks</h2>
+      {{#with
+        (gb-sort
+          (gb-mergeLists (gb-collapseRanged (gb-entries system.ranged)) (gb-collapseMelee (gb-entries system.melee)))
+          sortfield='name'
+        )
+      }}
+        <div id='gb-attacks' data-attacks='{{this.length}}'>
+          <ul>
+            {{#each this}}
+              {{#if this.range}}
+                <li class='gb-attack'>{{> gb-attack-ranged}}</li>
+              {{else}}
+                <li class='gb-attack'>{{> gb-attack-melee}}</li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      {{/with}}
     {{/unless}}
 
     <hr />
 
     <div id='gb-traits-skills'>
       {{#unless (empty system.ads)}}
-      <div id='gb-traits'>
-        <h2>Traits</h2>
-        <ul>
-          {{#each (gb-traitFilter (flatlist system.ads)) }}
-          <li class="indent{{this.indent}}">
-            {{{gurpslink name}}}
-            {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-            {{#if notes}}<br />
-            <span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+        <div id='gb-traits'>
+          <h2>Traits</h2>
+          <ul>
+            {{#each (gb-traitFilter (flatlist system.ads))}}
+              <li class='indent{{this.indent}}'>
+                {{{gurpslink name}}}
+                {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                {{#if notes}}<br />
+                  <span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
+        </div>
       {{/unless}}
 
       {{#unless (empty system.skills)}}
-      <div id='gb-skills'>
-        <h2>Skills</h2>
-        <ul>
-          {{#each system.skills}}
-          <li>
-            {{#if (empty contains)}}
-            <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
-              data-otf='Sk:"{{name}}"'>
-              {{{gurpslink this.name}}}-{{this.level}}
-            </span>
-            {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-            {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
-            {{else}}
-            <i>{{name}}</i>
-            <ul>
-              {{#each contains}}
+        <div id='gb-skills'>
+          <h2>Skills</h2>
+          <ul>
+            {{#each system.skills}}
               <li>
-                <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
-                  data-otf='Sk:"{{name}}"'>
-                  {{{gurpslink this.name}}}-{{this.level}}
-                </span>
-                {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                {{#each contains}}
-                and
-                <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
-                  data-otf='Sk:"{{name}}"'>
-                  {{{gurpslink this.name}}}-{{this.level}}
-                </span>
-                {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
-                {{/each}}
-                {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                {{#if (empty contains)}}
+                  <span
+                    class='{{rollable level}}'
+                    data-name='{{name}}'
+                    data-key='system.skills.{{@key}}'
+                    data-otf='Sk:"{{name}}"'
+                  >
+                    {{{gurpslink this.name}}}-{{this.level}}
+                  </span>
+                  {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                  {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                {{else}}
+                  <i>{{name}}</i>
+                  <ul>
+                    {{#each contains}}
+                      <li>
+                        <span
+                          class='{{rollable level}}'
+                          data-name='{{name}}'
+                          data-key='system.skills.{{@key}}'
+                          data-otf='Sk:"{{name}}"'
+                        >
+                          {{{gurpslink this.name}}}-{{this.level}}
+                        </span>
+                        {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                        {{#each contains}}
+                          and
+                          <span
+                            class='{{rollable level}}'
+                            data-name='{{name}}'
+                            data-key='system.skills.{{@key}}'
+                            data-otf='Sk:"{{name}}"'
+                          >
+                            {{{gurpslink this.name}}}-{{this.level}}
+                          </span>
+                          {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                          {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                        {{/each}}
+                        {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                {{/if}}
               </li>
-              {{/each}}
-            </ul>
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+            {{/each}}
+          </ul>
+        </div>
       {{/unless}}
 
       {{#unless (empty system.spells)}}
-      <div id='gb-spells'>
-        <h2>{{i18n 'GURPS.spells' 'Spells'}}</h2>
-        <ul>
-          {{#each system.spells}}
-          <li>
-            {{#if (empty contains)}}
-            <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
-              data-otf='Sp:"{{name}}"'>
-              {{{gurpslink this.name}}}-{{this.level}}
-              {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-            </span>
-            {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
-            {{else}}
-            <i>{{name}}</i>
-            <ul>
-              {{#each contains}}
+        <div id='gb-spells'>
+          <h2>{{i18n 'GURPS.spells' 'Spells'}}</h2>
+          <ul>
+            {{#each system.spells}}
               <li>
-                <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
-                  data-otf='Sp:"{{name}}"'>
-                  {{{gurpslink this.name}}}-{{this.level}}
-                  {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                </span>
-                {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                {{#if (empty contains)}}
+                  <span
+                    class='{{rollable level}}'
+                    data-name='{{name}}'
+                    data-key='system.spells.{{@key}}'
+                    data-otf='Sp:"{{name}}"'
+                  >
+                    {{{gurpslink this.name}}}-{{this.level}}
+                    {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                  </span>
+                  {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                {{else}}
+                  <i>{{name}}</i>
+                  <ul>
+                    {{#each contains}}
+                      <li>
+                        <span
+                          class='{{rollable level}}'
+                          data-name='{{name}}'
+                          data-key='system.spells.{{@key}}'
+                          data-otf='Sp:"{{name}}"'
+                        >
+                          {{{gurpslink this.name}}}-{{this.level}}
+                          {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                        </span>
+                        {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
 
-                {{#each contains}}
-                <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
-                  data-otf='Sp:"{{name}}"'>
-                  {{{gurpslink this.name}}}-{{this.level}}
-                  {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                </span>
-                {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
-                {{/each}}
+                        {{#each contains}}
+                          <span
+                            class='{{rollable level}}'
+                            data-name='{{name}}'
+                            data-key='system.spells.{{@key}}'
+                            data-otf='Sp:"{{name}}"'
+                          >
+                            {{{gurpslink this.name}}}-{{this.level}}
+                            {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                          </span>
+                          {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                        {{/each}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                {{/if}}
               </li>
-              {{/each}}
-            </ul>
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+            {{/each}}
+          </ul>
+        </div>
       {{/unless}}
 
       {{#unless (and (empty system.conditionalmods) (empty system.reactions))}}
-      <div id="special-abilities">
-        <h2>Special Abilities</h2>
-        {{#each (gb-mergeLists (gb-entries system.conditionalmods) (gb-entries system.reactions))}}
-        <ul>
-          <li>
-            <span class="gb-value penalty gmod" data-name="{{situation}}" data-otf="{{modifier}} {{situation}}"
-              draggable="true">
-              {{{displayNumber modifier}}}
-            </span>{{situation}}
-          </li>
-        </ul>
-        {{/each}}
-      </div>
+        <div id='special-abilities'>
+          <h2>Special Abilities</h2>
+          {{#each (gb-mergeLists (gb-entries system.conditionalmods) (gb-entries system.reactions))}}
+            <ul>
+              <li>
+                <span
+                  class='gb-value penalty gmod'
+                  data-name='{{situation}}'
+                  data-otf='{{modifier}} {{situation}}'
+                  draggable='true'
+                >
+                  {{{displayNumber modifier}}}
+                </span>{{situation}}
+              </li>
+            </ul>
+          {{/each}}
+        </div>
       {{/unless}}
 
       {{#unless (and (empty system.equipment.carried) (empty system.equipment.other))}}
-      <div id="equipment">
-        <h2>Equipment</h2>
-        {{#unless (empty system.equipment.carried)}}
-        <h3>Combat Load
-          ({{toLocaleString eqtsummary.eqtlbs}}
-          lb; ${{toLocaleString eqtsummary.eqtcost}}):</h3>
-        <ul id="equip-carried">
-          {{#each (flatlist (lookup system.equipment 'carried')) }}
-          <li class="equipment indent{{this.indent}}">
-            {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
-            {{this.name}}
-            {{#if (gt (gb-round count) 1)}}
-            {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}}, {{gb-round weightsum}} lbs.){{/if}}
-            {{else}}
-            {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-        {{/unless}}
-        {{#unless (empty system.equipment.other)}}
-        <h3>Other
-          ({{toLocaleString eqtsummary.otherlbs}}
-          lb; ${{toLocaleString eqtsummary.othercost}}):</h3>
-        <ul>
-          {{#each (flatlist (lookup system.equipment 'other')) }}
-          <li class="equipment indent{{this.indent}}">
-            {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
-            {{this.name}}
-            {{#if (gt (gb-round count) 1)}}
-            {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}}, {{gb-round weightsum}} lbs.){{/if}}
-            {{else}}
-            {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-        {{/unless}}
-      </div>
+        <div id='equipment'>
+          <h2>Equipment</h2>
+          {{#unless (empty system.equipment.carried)}}
+            <h3>Combat Load ({{toLocaleString eqtsummary.eqtlbs}}
+              lb; ${{toLocaleString eqtsummary.eqtcost}}):</h3>
+            <ul id='equip-carried'>
+              {{#each (flatlist (lookup system.equipment 'carried'))}}
+                <li class='equipment indent{{this.indent}}'>
+                  {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
+                  {{this.name}}
+                  {{#if (gt (gb-round count) 1)}}
+                    {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}},
+                      {{gb-round weightsum}}
+                      lbs.){{/if}}
+                  {{else}}
+                    {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+          {{/unless}}
+          {{#unless (empty system.equipment.other)}}
+            <h3>Other ({{toLocaleString eqtsummary.otherlbs}}
+              lb; ${{toLocaleString eqtsummary.othercost}}):</h3>
+            <ul>
+              {{#each (flatlist (lookup system.equipment 'other'))}}
+                <li class='equipment indent{{this.indent}}'>
+                  {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
+                  {{this.name}}
+                  {{#if (gt (gb-round count) 1)}}
+                    {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}},
+                      {{gb-round weightsum}}
+                      lbs.){{/if}}
+                  {{else}}
+                    {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+          {{/unless}}
+        </div>
       {{/unless}}
     </div>
 
     {{#unless (empty system.notes)}}
-    <h2>Special Abilities + Notes</h2>
-    <div id='gb-abilities' style='margin-bottom: 1em'>
-      {{#each system.notes}}
-      <div class='gb-ability'>
-        {{#if title}}<span class='gb-name'>{{{gurpslink title}}}&thinsp;</span>{{/if}}{{{gurpslinkbr notes}}}
+      <h2>Special Abilities + Notes</h2>
+      <div id='gb-abilities' style='margin-bottom: 1em'>
+        {{#each system.notes}}
+          <div class='gb-ability'>
+            {{#if title}}<span class='gb-name'>{{{gurpslink title}}}&thinsp;</span>{{/if}}{{{gurpslinkbr notes}}}
+          </div>
+        {{/each}}
       </div>
-      {{/each}}
-    </div>
     {{/unless}}
 
   </div>
@@ -375,17 +443,20 @@
             <div class='gb-label'>{{i18n 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedparry}}
-              <div class='gb-value rollable' style='padding-left: 3px;' data-path='parry' data-otf='Parry'>
-                {{system.equippedparry}}
-              </div>
-              {{#if system.defenses.parry.bonus}}
-              <div class='gb-value gb-bonus rollable' style='width: 100%'
-                data-otf='Parry {{{displayNumber system.defenses.parry.bonus}}} DB'>
-                {{{displayNumber system.defenses.parry.bonus}}}
-              </div>
-              {{/if}}
+                <div class='gb-value rollable' style='padding-left: 3px;' data-path='parry' data-otf='Parry'>
+                  {{system.equippedparry}}
+                </div>
+                {{#if system.defenses.parry.bonus}}
+                  <div
+                    class='gb-value gb-bonus rollable'
+                    style='width: 100%'
+                    data-otf='Parry {{{displayNumber system.defenses.parry.bonus}}} DB'
+                  >
+                    {{{displayNumber system.defenses.parry.bonus}}}
+                  </div>
+                {{/if}}
               {{else}}
-              <div class='gb-value'>–</div>
+                <div class='gb-value'>–</div>
               {{/if}}
             </div>
           </div>
@@ -396,10 +467,13 @@
                 {{system.currentdodge}}
               </div>
               {{#if system.defenses.dodge.bonus}}
-              <div class='gb-value gb-bonus rollable' style='width: 100%'
-                data-otf='Dodge {{{displayNumber system.defenses.dodge.bonus}}} DB'>
-                {{{displayNumber system.defenses.dodge.bonus}}}
-              </div>
+                <div
+                  class='gb-value gb-bonus rollable'
+                  style='width: 100%'
+                  data-otf='Dodge {{{displayNumber system.defenses.dodge.bonus}}} DB'
+                >
+                  {{{displayNumber system.defenses.dodge.bonus}}}
+                </div>
               {{/if}}
             </div>
           </div>
@@ -407,24 +481,27 @@
             <div class='gb-label'>{{i18n 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedblock}}
-              <div class='gb-value rollable' style='padding-left: 3px;' data-path='block' data-otf='Block'>
-                {{system.equippedblock}}
-              </div>
-              {{#if system.defenses.block.bonus}}
-              <div class='gb-value gb-bonus rollable' style='width: 100%'
-                data-otf='Block {{{displayNumber system.defenses.block.bonus}}} DB'>
-                {{{displayNumber system.defenses.block.bonus}}}
-              </div>
-              {{/if}}
+                <div class='gb-value rollable' style='padding-left: 3px;' data-path='block' data-otf='Block'>
+                  {{system.equippedblock}}
+                </div>
+                {{#if system.defenses.block.bonus}}
+                  <div
+                    class='gb-value gb-bonus rollable'
+                    style='width: 100%'
+                    data-otf='Block {{{displayNumber system.defenses.block.bonus}}} DB'
+                  >
+                    {{{displayNumber system.defenses.block.bonus}}}
+                  </div>
+                {{/if}}
               {{else}}
-              <div class='gb-value'>–</div>
+                <div class='gb-value'>–</div>
               {{/if}}
             </div>
           </div>
           <div class='gb-defense'>
             {{#with torso}}
-            <div class='gb-label'>{{i18n 'GURPS.hitLocationDR'}}</div>
-            <div class='gb-value'>{{dr}}{{#if split.cr}}/{{split.cr}}{{/if}}</div>
+              <div class='gb-label'>{{i18n 'GURPS.hitLocationDR'}}</div>
+              <div class='gb-value'>{{dr}}{{#if split.cr}}/{{split.cr}}{{/if}}</div>
             {{/with}}
           </div>
         </div>
@@ -433,15 +510,20 @@
         <h3>Control Thresholds</h3>
         <div class='gb-control-threshold-detail'>
           {{#with (gb-tracker data 'Control Points')}}
-          {{#each (controlBreakpoints this)}}
-          {{#if (ne label 'Unrestrained')}}
-          <div class='gb-defense' title='{{i18n label label}}' {{#if (eq @index (breakpointIndex-of ../thresholds ../max
-            ../value))}} style='background: {{color}}' {{/if}}>
-            <div class='gb-label'>{{gb-thresholdAbbrev label}}</div>
-            <div class='gb-value'>{{breakpoint}}</div>
-          </div>
-          {{/if}}
-          {{/each}}
+            {{#each (controlBreakpoints this)}}
+              {{#if (ne label 'Unrestrained')}}
+                <div
+                  class='gb-defense'
+                  title='{{i18n label label}}'
+                  {{#if (eq @index (breakpointIndex-of ../thresholds ../max  ../value))}}
+                  style='background: {{color}}'
+                  {{/if}}
+                >
+                  <div class='gb-label'>{{gb-thresholdAbbrev label}}</div>
+                  <div class='gb-value'>{{breakpoint}}</div>
+                </div>
+              {{/if}}
+            {{/each}}
           {{/with}}
         </div>
       </div>
