@@ -226,7 +226,7 @@
   color: var(--gb-headerColor);
 }
 
-.gb-quickref-sheet #gb-attributes-detail label+div {
+.gb-quickref-sheet #gb-attributes-detail label + div {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(100% * 0.9);
   text-align: left;
@@ -239,7 +239,7 @@
   font-variant: none;
 }
 
-.gb-quickref-sheet #gb-attributes-detail label.sb-secondary+div {
+.gb-quickref-sheet #gb-attributes-detail label.sb-secondary + div {
   font-family: Aramante, Roboto, sans-serif;
   text-align: center;
   font-size: 1.2rem;
@@ -270,7 +270,7 @@
   white-space: nowrap;
 }
 
-.gb-quickref-sheet .sb-secondary-attrs>div {
+.gb-quickref-sheet .sb-secondary-attrs > div {
   display: inline-flex;
   flex-flow: row nowrap;
   justify-items: center;
@@ -392,8 +392,7 @@
 }
 
 .gb-quickref-sheet .gmod:hover,
-.gb-quickref-sheet #gb-traits .glinkmod:hover,
-.gb-quickref-sheet #gb-skills .glinkmod:hover {
+.gb-quickref-sheet .glinkmod:hover {
   border: none !important;
   background-color: var(--gb-backgroundColorModifier) !important;
   margin: 0;
@@ -402,8 +401,7 @@
 }
 
 .gb-quickref-sheet .gb-value.gmod:active,
-.gb-quickref-sheet #gb-traits .glinkmod:active,
-.gb-quickref-sheet #gb-skills .glinkmod:active {
+.gb-quickref-sheet .glinkmod:active {
   background-color: var(--gb-backgroundColorModActive) !important;
 }
 
@@ -529,7 +527,7 @@
   column-count: 1;
 }
 
-.gb-quickref-sheet input[type=number].spinner::-webkit-inner-spin-button,
-.gb-quickref-sheet input[type=number].spinner::-webkit-outer-spin-button {
+.gb-quickref-sheet input[type='number'].spinner::-webkit-inner-spin-button,
+.gb-quickref-sheet input[type='number'].spinner::-webkit-outer-spin-button {
   opacity: 1;
 }

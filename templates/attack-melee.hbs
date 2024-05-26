@@ -33,5 +33,6 @@
   {{/if}}
 {{/each}}
 
-{{#if parry}}<span>Parry {{parry}}.</span>{{/if}}
+{{#if (and parry (ne parry 'No'))}}
+<span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if usage}} ({{usage}}){{/if}}'>Parry {{parry}}.</span>{{/if}}
 {{#if notes}}<span class='gb-notes'>{{{gurpslink notes}}}</span>{{/if}}
