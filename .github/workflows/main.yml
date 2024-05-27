@@ -17,13 +17,13 @@ jobs:
         id: get-version
         run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
 
-      - run: zip -r ./gurps-quick-reference-sheet.zip module.json gurps-quick-reference-sheet.js assets/ scripts/ styles/ templates/
-
       # Update the module.json version to match the tag
       - name: Update Version
         shell: bash
         id: set-version
         run: echo "::set-output name=version::$(node ./.github/workflows/set-version.js ${{ github.ref }})"
+
+      - run: zip -r ./gurps-quick-reference-sheet.zip module.json gurps-quick-reference-sheet.js assets/ scripts/ styles/ templates/
 
       # Create an additional release for this version
       - name: Create Release
