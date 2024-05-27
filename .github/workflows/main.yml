@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
 
       # Run the script that returns the version from `module.json`
       # - name: Get Version
@@ -22,6 +23,13 @@ jobs:
         shell: bash
         id: set-version
         run: echo "::set-output name=version::$(node ./.github/workflows/set-version.js ${{ github.ref }})"
+
+      - name: Update module.json
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: 'module.json'
+          commit-msg: 'Update module.json version to ${{ github.ref_name }}'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: zip -r ./gurps-quick-reference-sheet.zip module.json gurps-quick-reference-sheet.js assets/ scripts/ styles/ templates/
 
@@ -41,7 +49,7 @@ jobs:
       - name: Create Latest Release
         id: create_latest_release
         uses: ncipollo/release-action@v1
-        if: endsWith(github.ref, 'master') # Only update the latest release when pushing to the master branch
+        if: endsWith(${{ github.ref }}, 'master') # Only update the latest release when pushing to the master branch
         with:
           allowUpdates: true
           name: Latest
