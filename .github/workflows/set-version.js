@@ -11,7 +11,7 @@ if (!tagVersion || !tagVersion.startsWith('v')) {
 } else {
   manifest.version = tagVersion.substring(1) // strip the 'v'-prefix
   manifest.manifest = `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/module.json`
-  manifest.download = `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/module.zip`
+  manifest.download = `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/gurps-quick-reference-sheet.zip`
   fs.writeFileSync('module.json', JSON.stringify(manifest, null, 2)) // pretty print JSON back to module.json
   console.log(tagVersion)
 }
