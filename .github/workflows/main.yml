@@ -12,10 +12,10 @@ jobs:
       - uses: actions/checkout@v2
 
       # Run the script that returns the version from `module.json`
-      - name: Get Version
-        shell: bash
-        id: get-version
-        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+      # - name: Get Version
+      #   shell: bash
+      #   id: get-version
+      #   run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
 
       # Update the module.json version to match the tag
       - name: Update Version
@@ -31,12 +31,12 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true # set to false if you do not want to allow updates on existing releases
-          name: Release ${{ steps.get-version.outputs.version }} # Use the version in the name
+          name: Release ${{ github.ref_name }} # Use the version in the name
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: './module.json,./gurps-quick-reference-sheet.zip'
-          tag: ${{ steps.get-version.outputs.version }} # Use the version as the tag
+          tag: ${{ github.ref_name }} # Use the version as the tag
 
       - name: Create Latest Release
         id: create_latest_release
