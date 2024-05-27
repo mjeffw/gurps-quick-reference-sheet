@@ -1,4 +1,4 @@
-name: my-module CI
+name: gurps-quick-reference-sheet CI
 
 on:
   push:
@@ -18,6 +18,7 @@ jobs:
         id: set-version
         run: echo "::set-output name=version::$(node ./.github/workflows/set-version.js ${{ github.ref }})"
 
+      # Commit the updated module.json
       - name: Update module.json
         uses: test-room-7/action-update-file@v1
         with:
@@ -25,9 +26,10 @@ jobs:
           commit-msg: 'Update module.json version to ${{ github.ref_name }}'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Create the zip file
       - run: zip -r ./gurps-quick-reference-sheet.zip module.json gurps-quick-reference-sheet.js assets/ scripts/ styles/ templates/
 
-      # Create an additional release for this version
+      # Create a new release for this version
       - name: Create Release
         id: create_versioned_release
         uses: ncipollo/release-action@v1
@@ -40,6 +42,7 @@ jobs:
           artifacts: './module.json,./gurps-quick-reference-sheet.zip'
           tag: ${{ github.ref_name }} # Use the version as the tag
 
+      # Create a release with the "Latest" tag
       - name: Create Latest Release
         id: create_latest_release
         uses: ncipollo/release-action@v1
