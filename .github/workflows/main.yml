@@ -38,7 +38,7 @@ jobs:
           artifacts: './module.json,./gurps-quick-reference-sheet.zip'
           tag: ${{ steps.get-version.outputs.version }} # Use the version as the tag
 
-      - name: Create Release
+      - name: Create Latest Release
         id: create_latest_release
         uses: ncipollo/release-action@v1
         if: endsWith(github.ref, 'master') # Only update the latest release when pushing to the master branch
