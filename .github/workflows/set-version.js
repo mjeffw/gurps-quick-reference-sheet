@@ -10,8 +10,8 @@ if (!tagVersion || !tagVersion.startsWith('v')) {
   process.exitCode = 1
 } else {
   manifest.version = tagVersion.substring(1) // strip the 'v'-prefix
-  manifest.manifest = `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/${tagVersion}/module.json`
-  manifest.download = `https://github.com/mjeffw/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/module.zip`
+  manifest.manifest = `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/module.json`
+  manifest.download = `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tagVersion}/module.zip`
   fs.writeFileSync('module.json', JSON.stringify(manifest, null, 2)) // pretty print JSON back to module.json
   console.log(tagVersion)
 }
