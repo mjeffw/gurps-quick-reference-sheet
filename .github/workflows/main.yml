@@ -12,12 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
 
-      # Run the script that returns the version from `module.json`
-      # - name: Get Version
-      #   shell: bash
-      #   id: get-version
-      #   run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
-
       # Update the module.json version to match the tag
       - name: Update Version
         shell: bash
