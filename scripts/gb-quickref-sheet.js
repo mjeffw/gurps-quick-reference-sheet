@@ -43,6 +43,10 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
       case 'NB':
         data.cssClass = `${data.cssClass} bestiary`
         break
+
+      case 'SB':
+        data.cssClass = `${data.cssClass} saethor`
+        break
     }
     return data
   }
@@ -110,7 +114,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   }
 
   _handleOnPdfLink(event) {
-    const prefix = getProperty(this.actor, 'flags.gurps.book')
+    const prefix = foundry.utils.getProperty(this.actor, 'flags.gurps.book')
     handlePdf(prefix + event.currentTarget.innerText)
   }
 }

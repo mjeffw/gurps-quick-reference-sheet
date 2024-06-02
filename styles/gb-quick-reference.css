@@ -42,9 +42,31 @@
   --gb-backgroundColorModifier: orange;
   --gb-backgroundColorModActive: rgb(158, 87, 0);
   --gb-pagerefhover: 0 0 5px lightcoral;
+  --gb-dropshadow: 2px 2px 4px grey;
+}
+
+.gb-quick-reference.saethor {
   --gb-imageBorderTop: url(../assets/images/gb_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/gb_border_bottom.webp);
-  --gb-dropshadow: 2px 2px 4px grey;
+  --gb-topBorderHeight: 55px;
+  --gb-bottomColumnTemplate: 6.5% 6.2% auto 6.5% 7.5%;
+  --gb-pageRefBackground: none;
+  --gb-pageRefMargins: 0 0 15px;
+}
+
+.gb-quick-reference.bestiary {
+  --gb-backgroundColor: white;
+  --gb-imageBorderTop: url(../assets/images/bestiary_border_top.webp);
+  --gb-imageBorderBottom: url(../assets/images/bestiary_border_bottom.webp);
+  --gb-topBorderHeight: 77px;
+  --gb-bottomColumnTemplate: 4% 6.5% auto 6.5% 4.5%;
+  --gb-pageRefBackground: radial-gradient(
+    ellipse at center,
+    rgb(254 254 254 / 100%) 0%,
+    rgb(255 255 255 / 80%) 40%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  --gb-pageRefMargins: 15px 0 15px 0;
 }
 
 .gb-quickref-sheet .window-content {
@@ -53,11 +75,16 @@
 }
 
 .gb-quickref-sheet .gb-name {
-  font-weight:  bold;
+  font-weight: bold;
 }
 
 .gb-quickref-sheet .gb-top-border {
   margin: 0 calc(-1 * var(--gb-standardSpacing));
+  min-height: var(--gb-topBorderHeight);
+  background-image: var(--gb-imageBorderTop);
+  background-size: 100% var(--gb-topBorderHeight);
+  background-repeat: no-repeat;
+  filter: drop-shadow(var(--gb-dropshadow));
 }
 
 .gb-quickref-sheet .gb-top-border img {
@@ -92,7 +119,7 @@
   grid-row: 2;
   position: relative;
   width: calc(var(--gb-standardSpacing) * 2 + 100%);
-  grid-template-columns: 6.5% 6.2% auto 6.5% 7.5%;
+  grid-template-columns: var(--gb-bottomColumnTemplate);
   display: grid;
   margin: 0 calc(var(--gb-standardSpacing) * -1);
   bottom: 0;
@@ -521,8 +548,9 @@
   justify-content: center;
   font-size: 16px;
   font-family: 'Aramante', 'Roboto', sans-serif;
-  margin-bottom: 15px;
+  margin: var(--gb-pageRefMargins);
   text-shadow: none;
+  background: var(--gb-pageRefBackground);
 }
 
 .gb-quickref-sheet #gb-attacks[data-attacks='0'],
