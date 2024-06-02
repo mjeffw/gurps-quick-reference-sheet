@@ -52,6 +52,10 @@
   padding: 0;
 }
 
+.gb-quickref-sheet .gb-name {
+  font-weight:  bold;
+}
+
 .gb-quickref-sheet .gb-top-border {
   margin: 0 calc(-1 * var(--gb-standardSpacing));
 }
@@ -451,8 +455,8 @@
 .gb-quickref-sheet #gb-footer .gb-value {
   font-family: Aramante, Roboto, sans-serif;
   font-size: calc(24px * 0.9);
-  width: 100%;
-  text-align: center;
+  /* width: 100%; */
+  /* text-align: right; */
 }
 
 .gb-quickref-sheet #gb-footer .gb-label {
@@ -506,8 +510,8 @@
 .gb-quickref-sheet .gb-defense-container {
   display: flex;
   flex-flow: row nowrap;
-  justify-items: stretch;
   width: 100%;
+  justify-content: center;
 }
 
 .gb-quickref-sheet #pageref {

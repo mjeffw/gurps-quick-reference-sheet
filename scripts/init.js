@@ -124,7 +124,7 @@ export default async function init(module) {
 
       // if damage looks like <damage>/<number>point<s> then set damage to <damage> and cost to <number>
       const regex = /(?<damage>.*?)\/(?<points>\d+)?\s*point(?:s)?/
-      if (ranged.damage.match(regex)) {
+      if (ranged.damage && ranged.damage.toString().match(regex)) {
         convertToDamageAccum(ranged, regex)
       }
 
@@ -168,7 +168,7 @@ export default async function init(module) {
   })
 
   function convertToDamageAccum(ranged, regex) {
-    const groups = ranged.damage.match(regex).groups
+    const groups = ranged.damage.toString().match(regex).groups
     ranged.damage = `+${groups.damage}`
     ranged.cost = +(groups.points || 1)
   }

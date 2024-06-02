@@ -3,8 +3,9 @@
     <div class='gb-top-border'>
       <img class='gb-logo' src='modules/gurps-quick-reference-sheet/assets/images/gb_border_top.webp' />
     </div>
-    <h1>{{#if system.traits.title}}{{system.traits.title}} {{/if}}{{actor.name}}<span class='subtype'>
-        {{#if system.traits.subtype}}({{system.traits.subtype}}){{/if}}</span>
+    <h1>
+      {{actor.name}}
+      {{#if system.traits.title}}<span class='subtype'> ({{system.traits.title}})</span>{{/if}}
     </h1>
 
     <div id='sb-attrs'>
@@ -152,7 +153,6 @@
           </div>
 
           {{#each system.additionalresources.tracker}}
-            {{debug @key}}
             <div class='label-below'>
               <div
                 id='cp-container'
@@ -423,7 +423,6 @@
                 {{#if system.defenses.parry.bonus}}
                   <div
                     class='gb-value gb-bonus rollable'
-                    style='width: 100%'
                     data-otf='Parry {{{displayNumber system.defenses.parry.bonus}}} DB'
                   >
                     {{{displayNumber system.defenses.parry.bonus}}}
@@ -443,7 +442,6 @@
               {{#if system.defenses.dodge.bonus}}
                 <div
                   class='gb-value gb-bonus rollable'
-                  style='width: 100%'
                   data-otf='Dodge {{{displayNumber system.defenses.dodge.bonus}}} DB'
                 >
                   {{{displayNumber system.defenses.dodge.bonus}}}
@@ -461,7 +459,6 @@
                 {{#if system.defenses.block.bonus}}
                   <div
                     class='gb-value gb-bonus rollable'
-                    style='width: 100%'
                     data-otf='Block {{{displayNumber system.defenses.block.bonus}}} DB'
                   >
                     {{{displayNumber system.defenses.block.bonus}}}
