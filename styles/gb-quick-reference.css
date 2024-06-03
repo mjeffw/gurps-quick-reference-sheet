@@ -24,7 +24,7 @@
   src: url(../assets/fonts/MyriadPro-BoldCond.otf);
 }
 
-.gb-quickref-sheet {
+.gb-quick-reference {
   --gb-standardSpacing: 0.4rem;
   --gb-heightTopBorder: 39px;
   --gb-backgroundSize: 100% var(--gb-heightTopBorder);
@@ -43,9 +43,6 @@
   --gb-backgroundColorModActive: rgb(158, 87, 0);
   --gb-pagerefhover: 0 0 5px lightcoral;
   --gb-dropshadow: 2px 2px 4px grey;
-}
-
-.gb-quick-reference.saethor {
   --gb-imageBorderTop: url(../assets/images/gb_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/gb_border_bottom.webp);
   --gb-topBorderHeight: 55px;
@@ -67,6 +64,30 @@
     rgba(0, 0, 0, 0) 80%
   );
   --gb-pageRefMargins: 15px 0 15px 0;
+}
+
+.gb-quick-reference.bugstiary {
+  --gb-backgroundColor: rgb(253, 246, 236);
+  --gb-imageBorderTop: url(../assets/images/bugstiary_border_top.webp);
+  --gb-imageBorderBottom: url(../assets/images/bugstiary_border_bottom.webp);
+  --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
+  --gb-pageRefMargins: 10px 0 15px 0;
+}
+
+.gb-quick-reference.garden {
+  --gb-backgroundColor: rgb(249, 255, 249);
+  --gb-imageBorderTop: url(../assets/images/garden_border_top.webp);
+  --gb-imageBorderBottom: url(../assets/images/garden_border_bottom.webp);
+  --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
+  --gb-pageRefMargins: 10px 0 15px 0;
+}
+
+.gb-quick-reference.snakes {
+  --gb-backgroundColor: rgb(254, 246, 236);
+  --gb-imageBorderTop: url(../assets/images/snakes_border_top.webp);
+  --gb-imageBorderBottom: url(../assets/images/snakes_border_bottom.webp);
+  --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
+  --gb-pageRefMargins: 10px 0 15px 0;
 }
 
 .gb-quickref-sheet .window-content {

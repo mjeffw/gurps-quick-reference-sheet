@@ -4,7 +4,7 @@
   "version": "1.1.0-rc.11",
   "compatibility": {
     "minimum": "11",
-    "verified": "11"
+    "verified": 12.324
   },
   "relationships": {
     "systems": [
@@ -31,12 +31,8 @@
       "email": "nick.coffin_pi@icloud.com"
     }
   ],
-  "styles": [
-    "./styles/gb-quick-reference.css"
-  ],
-  "esmodules": [
-    "./gurps-quick-reference-sheet.js"
-  ],
+  "styles": ["./styles/gb-quick-reference.css"],
+  "esmodules": ["./gurps-quick-reference-sheet.js"],
   "url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
   "manifest": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.1.0-rc.11/module.json",
   "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.1.0-rc.11/gurps-quick-reference-sheet.zip"
