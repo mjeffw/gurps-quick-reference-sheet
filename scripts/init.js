@@ -164,7 +164,7 @@ export default async function init(module) {
   Actors.registerSheet('gurps', GBQuickReferenceSheet, {
     types: ['enemy', 'character'],
     label: 'GB Quick Reference Sheet',
-    makeDefault: true,
+    makeDefault: false,
   })
 
   function convertToDamageAccum(ranged, regex) {
