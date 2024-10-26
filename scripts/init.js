@@ -51,7 +51,7 @@ export default async function init(module) {
     return thresholdLabelMap[threshold] ?? ''
   })
 
-  const toRemove = ['Natural Attacks']
+  const toRemove = ['Natural Attacks', 'Unarmed Combat']
   Handlebars.registerHelper('gb-traitFilter', function (traits) {
     const array = objectToArray(traits)
     return arrayToObject(
