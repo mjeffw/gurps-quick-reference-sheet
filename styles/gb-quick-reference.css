@@ -90,6 +90,14 @@
   --gb-pageRefMargins: 10px 0 15px 0;
 }
 
+.gb-quick-reference.warlock {
+  --gb-backgroundColor: #e2e3e6;
+  --gb-imageBorderTop: url(../assets/images/warlock_border_top.webp);
+  --gb-imageBorderBottom: url(../assets/images/warlock_border_bottom.webp);
+  --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
+  --gb-pageRefMargins: 10px 0 15px 0;
+}
+
 .gb-quickref-sheet .window-content {
   font-family: BestiaryText, serif;
   padding: 0;

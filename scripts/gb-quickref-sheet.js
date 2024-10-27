@@ -47,6 +47,10 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
       case 'SB':
         data.cssClass = `${data.cssClass} saethor`
         break
+
+      case 'WK':
+        data.cssClass = `${data.cssClass} warlock`
+        break
     }
     return data
   }
