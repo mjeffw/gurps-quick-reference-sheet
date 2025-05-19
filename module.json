@@ -1,10 +1,10 @@
 {
   "id": "gurps-quick-reference-sheet",
   "title": "Gaming Ballistic's GURPS Quick Reference Character Sheet",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "compatibility": {
     "minimum": "11",
-    "verified": 12.324
+    "verified": 12.343
   },
   "relationships": {
     "systems": [
@@ -13,7 +13,8 @@
         "type": "system",
         "compatibility": {
           "minimum": "0.16.10",
-          "verified": "0.16.10"
+          "verified": "0.16.10",
+          "maximum": "0.18"
         }
       }
     ]
@@ -31,13 +32,9 @@
       "email": "nick.coffin_pi@icloud.com"
     }
   ],
-  "styles": [
-    "./styles/gb-quick-reference.css"
-  ],
-  "esmodules": [
-    "./gurps-quick-reference-sheet.js"
-  ],
+  "styles": ["./styles/gb-quick-reference.css"],
+  "esmodules": ["./gurps-quick-reference-sheet.js"],
   "url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
-  "manifest": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.2.1/module.json",
-  "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.2.1/gurps-quick-reference-sheet.zip"
+  "manifest": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.2.2/module.json",
+  "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.2.2/gurps-quick-reference-sheet.zip"
 }
