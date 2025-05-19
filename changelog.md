@@ -1,5 +1,9 @@
 # Change Log
 
+Release 1.3.0
+
+- Updated for GGAv0.18.0 and Foundry v13.
+
 Release 1.2.1 10/28/2024
 
 - Support Warlock Knight styling.
