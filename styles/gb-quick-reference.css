@@ -376,31 +376,31 @@
   column-count: 2;
 }
 
-.indent1,
-.indent2,
-.indent3,
-.indent4,
-.indent5 {
+.gb-quickref-sheet .indent1,
+.gb-quickref-sheet .indent2,
+.gb-quickref-sheet .indent3,
+.gb-quickref-sheet .indent4,
+.gb-quickref-sheet .indent5 {
   padding: 0 !important;
 }
 
-.indent1 {
+.gb-quickref-sheet .indent1 {
   margin-left: 1rem;
 }
 
-.indent2 {
+.gb-quickref-sheet .indent2 {
   margin-left: 2rem !important;
 }
 
-.indent3 {
+.gb-quickref-sheet .indent3 {
   margin-left: 3rem !important;
 }
 
-.indent4 {
+.gb-quickref-sheet .indent4 {
   margin-left: 4rem !important;
 }
 
-.indent5 {
+.gb-quickref-sheet .indent5 {
   margin-left: 5rem !important;
 }
 
