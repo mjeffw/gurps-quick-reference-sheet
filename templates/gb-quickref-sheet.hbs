@@ -65,13 +65,13 @@
           <label for='fp'>{{localize 'GURPS.FP'}}</label>
           <div class='gb-value'>{{system.FP.max}}</div>
           {{! Basic Speed }}
-          <label class='sb-secondary' for='speed'>{{i18n 'GURPS.speed'}}</label>
+          <label class='sb-secondary' for='speed'>{{localize 'GURPS.speed'}}</label>
           <div id='speed' class='gb-value'>{{system.basicspeed.value}}</div>
 
           <div class='sb-secondary-attrs'>
             {{! Basic Lift }}
             <div>
-              <label class='sb-secondary' for='lift'>{{i18n 'GURPS.basicLift'}}</label>
+              <label class='sb-secondary' for='lift'>{{localize 'GURPS.basicLift'}}</label>
               <div id='lift' class='gb-value'>{{system.liftingmoving.basiclift}}</div>
             </div>
             {{! Damage }}
@@ -92,7 +92,7 @@
             </div>
           </div>
           {{! Basic Move }}
-          <label class='sb-secondary' for='move'>{{i18n 'GURPS.move'}}</label>
+          <label class='sb-secondary' for='move'>{{localize 'GURPS.move'}}</label>
           <div id='move' class='label-below'>
             <div class='gb-move' data-key='{{@key}}' title='{{mode}}'>
 
@@ -109,7 +109,7 @@
             </div>
             <select id='move-mode' {{disabled (lt (length system.move) 2)}}>
               {{#each system.move}}
-                <option value='{{@key}}' {{select-if default true}}>{{i18n mode mode}}</option>
+                <option value='{{@key}}' {{select-if default true}}>{{localize mode mode}}</option>
               {{/each}}
             </select>
           </div>
@@ -276,7 +276,7 @@
 
       {{#unless (empty system.spells)}}
         <div id='gb-spells'>
-          <h2>{{i18n 'GURPS.spells' 'Spells'}}</h2>
+          <h2>{{localize 'GURPS.spells' 'Spells'}}</h2>
           <ul>
             {{#each system.spells}}
               <li>
@@ -413,7 +413,7 @@
         <h3>Defenses</h3>
         <div id='gb-defenses-detail'>
           <div class='gb-defense'>
-            <div class='gb-label'>{{i18n 'GURPS.parry'}}</div>
+            <div class='gb-label'>{{localize 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedparry}}
                 <div class='gb-value rollable' style='padding-left: 3px;' data-path='parry' data-otf='Parry'>
@@ -433,7 +433,7 @@
             </div>
           </div>
           <div class='gb-defense'>
-            <div class='gb-label'>{{i18n 'GURPS.dodge'}}</div>
+            <div class='gb-label'>{{localize 'GURPS.dodge'}}</div>
             <div class='gb-defense-container'>
               <div class='gb-value rollable' style='padding-left: 3px;' data-path='dodge' data-otf='Dodge'>
                 {{system.currentdodge}}
@@ -449,7 +449,7 @@
             </div>
           </div>
           <div class='gb-defense'>
-            <div class='gb-label'>{{i18n 'GURPS.block'}}</div>
+            <div class='gb-label'>{{localize 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedblock}}
                 <div class='gb-value rollable' style='padding-left: 3px;' data-path='block' data-otf='Block'>
@@ -470,7 +470,7 @@
           </div>
           <div class='gb-defense'>
             {{#with torso}}
-              <div class='gb-label'>{{i18n 'GURPS.hitLocationDR'}}</div>
+              <div class='gb-label'>{{localize 'GURPS.hitLocationDR'}}</div>
               <div class='gb-value'>{{dr}}{{#if split.cr}}/{{split.cr}}{{/if}}</div>
             {{/with}}
           </div>
@@ -484,7 +484,7 @@
               {{#if (ne label 'Unrestrained')}}
                 <div
                   class='gb-defense'
-                  title='{{i18n label label}}'
+                  title='{{localize label label}}'
                   {{#if (eq @index (breakpointIndex-of ../thresholds ../max  ../value))}}
                   style='background: {{color}}'
                   {{/if}}
