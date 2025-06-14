@@ -4,7 +4,8 @@
   "version": "1.2.2",
   "compatibility": {
     "minimum": "11",
-    "verified": 12.343
+    "verified": 12.343,
+    "maximum": "13"
   },
   "relationships": {
     "systems": [
