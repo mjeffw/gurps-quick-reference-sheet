@@ -1,6 +1,6 @@
 # Change Log
 
-Release 1.3.0
+Release 1.3.0 06/14/2025
 
 - Updated for GGAv0.18.0 and Foundry v13.
 
