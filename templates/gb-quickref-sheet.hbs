@@ -109,7 +109,7 @@
             </div>
             <select id='move-mode' {{disabled (lt (length system.move) 2)}}>
               {{#each system.move}}
-                <option value='{{@key}}' {{select-if default true}}>{{localize mode mode}}</option>
+                <option value='{{@key}}' {{select-if default true}}>{{localize mode}}</option>
               {{/each}}
             </select>
           </div>
@@ -276,7 +276,7 @@
 
       {{#unless (empty system.spells)}}
         <div id='gb-spells'>
-          <h2>{{localize 'GURPS.spells' 'Spells'}}</h2>
+          <h2>{{localize 'GURPS.spells'}}</h2>
           <ul>
             {{#each system.spells}}
               <li>
@@ -484,7 +484,7 @@
               {{#if (ne label 'Unrestrained')}}
                 <div
                   class='gb-defense'
-                  title='{{localize label label}}'
+                  title='{{localize label}}'
                   {{#if (eq @index (breakpointIndex-of ../thresholds ../max  ../value))}}
                   style='background: {{color}}'
                   {{/if}}
