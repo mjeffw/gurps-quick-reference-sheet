@@ -416,7 +416,7 @@
             <div class='gb-label'>{{localize 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedparry}}
-                <div class='gb-value rollable' style='padding-left: 3px;' data-path='parry' data-otf='Parry'>
+                <div class='gb-value rollable' style='padding-left: 3px; width: 100%; text-align: center;' data-path='parry' data-otf='Parry'>
                   {{system.equippedparry}}{{#if system.equippedparryisfencing}}F{{/if}}
                 </div>
                 {{#if system.defenses.parry.bonus}}
@@ -435,7 +435,7 @@
           <div class='gb-defense'>
             <div class='gb-label'>{{localize 'GURPS.dodge'}}</div>
             <div class='gb-defense-container'>
-              <div class='gb-value rollable' style='padding-left: 3px;' data-path='dodge' data-otf='Dodge'>
+              <div class='gb-value rollable' style='padding-left: 3px; width: 100%; text-align: center;' data-path='dodge' data-otf='Dodge'>
                 {{system.currentdodge}}
               </div>
               {{#if system.defenses.dodge.bonus}}
@@ -452,7 +452,7 @@
             <div class='gb-label'>{{localize 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedblock}}
-                <div class='gb-value rollable' style='padding-left: 3px;' data-path='block' data-otf='Block'>
+                <div class='gb-value rollable' style='padding-left: 3px; width: 100%; text-align: center;' data-path='block' data-otf='Block'>
                   {{system.equippedblock}}
                 </div>
                 {{#if system.defenses.block.bonus}}

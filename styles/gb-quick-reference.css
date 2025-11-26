@@ -466,12 +466,13 @@
 }
 
 .gb-quickref-sheet .rollable {
-  background-color: inherit !important;
+  /* background-color: rgb(253 223 196); */
+  border-bottom: 1px dotted darkred;
 }
 
 .gb-quickref-sheet .rollable:hover,
 .gb-quickref-sheet .gurpslink:hover {
-  background-color: var(--gb-backgroundColorRollable) !important;
+  background-color: var(--gb-backgroundColorRollable);
   border: none !important;
   margin: 0 !important;
   border-radius: var(--gb-borderRadius);
@@ -591,4 +592,13 @@
 .gb-quickref-sheet input[type='number'].spinner::-webkit-inner-spin-button,
 .gb-quickref-sheet input[type='number'].spinner::-webkit-outer-spin-button {
   opacity: 1;
+}
+
+.gb-quickref-sheet .pdflink {
+  color: darkblue;
+  text-decoration: undeline;
+}
+
+.gb-quickref-sheet .pdflink:hover {
+  text-shadow: 0 0 5px blue;
 }
