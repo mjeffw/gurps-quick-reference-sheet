@@ -96,7 +96,7 @@
   --gb-imageBorderTop: url(../assets/images/gb_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/gb_border_bottom.webp);
   --gb-pageRefBackground: none;
-  --gb-pageRefMargins: 0 0 15px;
+  --gb-pageRefMargins: 0 0 25px;
 }
 
 .gb-quick-reference.bestiary {
