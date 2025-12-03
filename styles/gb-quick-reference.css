@@ -58,6 +58,7 @@
   --gb-colorDarkgrey: darkgrey;
   --gb-colorGrey: grey;
   --gb-colorBlack: black;
+  --gb-backgroundColorModifier: lightgoldenrod;
 
   /* Typography */
   --gb-fontHeading: HeadingFont, Roboto, sans-serif;
@@ -142,7 +143,7 @@
   --gb-backgroundColor: #e2e3e6;
   --gb-imageBorderTop: url(../assets/images/warlock_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/warlock_border_bottom.webp);
-  --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
+  --gb-bottomColumnTemplate: 4% 5.5% auto 5.5% 6%;
   --gb-pageRefMargins: 10px 0 15px 0;
 }
 
@@ -220,6 +221,7 @@
   list-style-type: '◇ ';
   margin: 0;
   color: var(--gb-headerColor);
+  padding: 0 0 0 1rem;
 }
 
 .gb-quickref-sheet li {
@@ -508,7 +510,7 @@
 .gb-quickref-sheet .glinkmod,
 .gb-quickref-sheet .gurpslink {
   border-radius: var(--gb-borderRadius);
-  background-color: inherit !important;
+  background-color: var(--gb-backgroundColorModifier);
 }
 
 .gb-quickref-sheet .glinkmod:hover,

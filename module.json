@@ -13,7 +13,7 @@
         "type": "system",
         "compatibility": {
           "minimum": "0.16.10",
-          "verified": "0.18.17"
+          "verified": "0.18.7"
         }
       }
     ]
