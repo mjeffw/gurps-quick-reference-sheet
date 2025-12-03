@@ -1,6 +1,6 @@
 <form class='gb-quick-reference {{cssClass}}' autocomplete='off'>
-  <div style='display: flex; flex-flow: column nowrap; height: calc(100% - 113px);'>
-    <div class='gb-top-border' style="">
+  <div>
+    <div class='gb-top-border'>
     </div>
     <h1>
       {{actor.name}}
@@ -77,17 +77,10 @@
             {{! Damage }}
             <div>
               <label class='sb-secondary' for='dmg'>Dmg</label>
-              <div id='dmg' class='gb-value secondary' style='display: flex; flex-flow: row nowrap'>
+              <div id='dmg' class='gb-value secondary'>
                 <div class='rollable' data-damage data-otf='{{system.thrust}} dmg'>{{system.thrust}}</div>
                 /
-                <div
-                  class='rollable'
-                  style='display: flex; flex-flow: row nowrap'
-                  data-damage
-                  data-otf='{{system.swing}} dmg'
-                >
-                  {{system.swing}}
-                </div>
+                <div class='rollable' data-damage data-otf='{{system.swing}} dmg'>{{system.swing}}</div>
               </div>
             </div>
           </div>
@@ -96,7 +89,7 @@
           <div id='move' class='label-below'>
             <div class='gb-move' data-key='{{@key}}' title='{{mode}}'>
 
-              <div style='display: flex; flex-flow: row nowrap; justify-content: center'>
+              <div>
                 <div class='gb-value secondary'>{{invoke document method='getCurrentMove'}}</div>
                 {{#with (invoke document method='_getCurrentMoveMode')}}
                   {{#if enhanced}}
@@ -209,9 +202,9 @@
             {{#each (gb-traitFilter (flatlist system.ads))}}
               <li class='indent{{this.indent}}'>
                 {{{gurpslink name}}}
-                {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                 {{#if notes}}<br />
-                  <span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>
+                  <span class='pageref-text'>{{{gurpslinkbr notes}}}</span>
                 {{/if}}
               </li>
             {{/each}}
@@ -234,8 +227,8 @@
                   >
                     {{{gurpslink this.name}}}-{{this.level}}
                   </span>
-                  {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                  {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                  {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
+                  {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                 {{else}}
                   <i>{{name}}</i>
                   <ul>
@@ -249,7 +242,7 @@
                         >
                           {{{gurpslink this.name}}}-{{this.level}}
                         </span>
-                        {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                        {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                         {{#each contains}}
                           and
                           <span
@@ -260,10 +253,10 @@
                           >
                             {{{gurpslink this.name}}}-{{this.level}}
                           </span>
-                          {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
-                          {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                          {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
+                          {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                         {{/each}}
-                        {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                        {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                       </li>
                     {{/each}}
                   </ul>
@@ -288,9 +281,9 @@
                     data-otf='Sp:"{{name}}"'
                   >
                     {{{gurpslink this.name}}}-{{this.level}}
-                    {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                    {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                   </span>
-                  {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                  {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                 {{else}}
                   <i>{{name}}</i>
                   <ul>
@@ -303,9 +296,9 @@
                           data-otf='Sp:"{{name}}"'
                         >
                           {{{gurpslink this.name}}}-{{this.level}}
-                          {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                          {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                         </span>
-                        {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                        {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
 
                         {{#each contains}}
                           <span
@@ -315,9 +308,9 @@
                             data-otf='Sp:"{{name}}"'
                           >
                             {{{gurpslink this.name}}}-{{this.level}}
-                            {{#if pageref}}<span style='font-size: 90%;'>({{{pdflinkext this}}})</span>{{/if}}
+                            {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                           </span>
-                          {{#if notes}}<br /><span style='font-size: 90%;'>{{{gurpslinkbr notes}}}</span>{{/if}}
+                          {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                         {{/each}}
                       </li>
                     {{/each}}
@@ -396,7 +389,7 @@
 
     {{#unless (empty system.notes)}}
       <h2>Special Abilities + Notes</h2>
-      <div id='gb-abilities' style='margin-bottom: 1em'>
+      <div id='gb-abilities'>
         {{#each system.notes}}
           <div class='gb-ability'>
             {{#if title}}<span class='gb-name'>{{{gurpslink title}}}&thinsp;</span>{{/if}}{{{gurpslinkbr notes}}}
@@ -416,7 +409,7 @@
             <div class='gb-label'>{{localize 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedparry}}
-                <div class='gb-value rollable' style='padding-left: 3px;' data-path='parry' data-otf='Parry'>
+                <div class='gb-value rollable' data-path='parry' data-otf='Parry'>
                   {{system.equippedparry}}{{#if system.equippedparryisfencing}}F{{/if}}
                 </div>
                 {{#if system.defenses.parry.bonus}}
@@ -435,7 +428,7 @@
           <div class='gb-defense'>
             <div class='gb-label'>{{localize 'GURPS.dodge'}}</div>
             <div class='gb-defense-container'>
-              <div class='gb-value rollable' style='padding-left: 3px;' data-path='dodge' data-otf='Dodge'>
+              <div class='gb-value rollable' data-path='dodge' data-otf='Dodge'>
                 {{system.currentdodge}}
               </div>
               {{#if system.defenses.dodge.bonus}}
@@ -452,7 +445,7 @@
             <div class='gb-label'>{{localize 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedblock}}
-                <div class='gb-value rollable' style='padding-left: 3px;' data-path='block' data-otf='Block'>
+                <div class='gb-value rollable' data-path='block' data-otf='Block'>
                   {{system.equippedblock}}
                 </div>
                 {{#if system.defenses.block.bonus}}
