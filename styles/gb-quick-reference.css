@@ -38,27 +38,26 @@
   --gb-indentSize: 1rem;
 
   /* Colors */
-  --gb-headerColor: rgb(132, 27, 22);
-  --gb-h3color: rgb(53, 19, 14);
+  --gb-colorPrimaryText: black;
+  --gb-colorHeader: rgb(132, 27, 22);
+  --gb-colorH3: rgb(53, 19, 14);
   --gb-colorLabel: rgb(32, 36, 35);
   --gb-colorSecondaryLabel: rgb(40, 18, 15);
+  --gb-colorFooterText: gold;
+  --gb-colorPdfLink: darkblue;
+  --gb-colorLightBorder: lightgrey;
+  --gb-colorDarkBorder: darkgrey;
   --gb-backgroundColor: rgb(255, 245, 236);
   --gb-backgroundColorBottom: papayawhip;
   --gb-backgroundColorPopup: lightgrey;
+
+  --gb-colorRollableBorder: darkred;
   --gb-backgroundColorRollable: gold;
-  --gb-backgroundColorModifier: orange;
-  --gb-backgroundColorModActive: rgb(158, 87, 0);
-  --gb-colorGold: gold;
-  --gb-colorDarkred: darkred;
-  --gb-colorDarkgoldenrod: darkgoldenrod;
-  --gb-colorDarkblue: darkblue;
-  --gb-colorBlue: blue;
-  --gb-colorLightgrey: lightgrey;
-  --gb-colorLightgray: lightgray;
-  --gb-colorDarkgrey: darkgrey;
-  --gb-colorGrey: grey;
-  --gb-colorBlack: black;
-  --gb-backgroundColorModifier: lightgoldenrod;
+  --gb-backgroundColorRollableActive: rgb(155, 115, 0);
+
+  --gb-backgroundColorModifier: lightgoldenrodyellow;
+  --gb-backgroundColorModHover: goldenrod;
+  --gb-backgroundColorModActive: darkgoldenrod;
 
   /* Typography */
   --gb-fontHeading: HeadingFont, Roboto, sans-serif;
@@ -83,11 +82,11 @@
   --gb-boxShadow: 0 -8px 8px 0 rgb(0 0 0 / 20%);
 
   /* Borders */
-  --gb-borderWidth1: 1px;
+  --gb-borderWidthRollable: 1px;
   --gb-borderWidth2: 2px;
   --gb-borderWidth3: 3px;
   --gb-borderStyleSolid: solid;
-  --gb-borderStyleDotted: dotted;
+  --gb-borderStyleRollable: dotted;
 
   /* Content */
   --gb-labelAcc: 'Acc ';
@@ -175,7 +174,7 @@
 .gb-quickref-sheet h2 {
   font-family: var(--gb-fontHeading);
   font-variant: small-caps;
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
   margin: 0;
   border: none;
 }
@@ -187,9 +186,9 @@
 
 .gb-quickref-sheet h1 {
   font-size: var(--gb-fontSize32);
-  color: var(--gb-colorBlack);
+  color: var(--gb-colorPrimaryText);
   text-align: center;
-  border-bottom: var(--gb-borderWidth3) var(--gb-borderStyleSolid) var(--gb-headerColor);
+  border-bottom: var(--gb-borderWidth3) var(--gb-borderStyleSolid) var(--gb-colorHeader);
   margin: 0 calc(var(--gb-standardSpacing) * 3) var(--gb-standardSpacing);
 }
 
@@ -200,7 +199,7 @@
 .gb-quickref-sheet h3 {
   font-family: var(--gb-fontBody);
   font-size: var(--gb-fontSize14);
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
   border: none;
   margin: 0;
 }
@@ -220,7 +219,7 @@
 .gb-quickref-sheet ul {
   list-style-type: '◇ ';
   margin: 0;
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
   padding: 0 0 0 1rem;
 }
 
@@ -230,8 +229,8 @@
 
 /* ==== Common Utility Classes ==== */
 .gb-quickref-sheet hr {
-  border-top: var(--gb-borderWidth1) var(--gb-borderStyleSolid) var(--gb-colorLightgray);
-  border-bottom: var(--gb-borderWidth1) var(--gb-borderStyleSolid) var(--gb-colorDarkgrey);
+  border-top: var(--gb-borderWidthRollable) var(--gb-borderStyleSolid) var(--gb-colorLightBorder);
+  border-bottom: var(--gb-borderWidthRollable) var(--gb-borderStyleSolid) var(--gb-colorDarkBorder);
   width: 100%;
 }
 
@@ -328,7 +327,7 @@
 
 .gb-quickref-sheet #gb-attributes-detail label.gb-primary,
 .gb-quickref-sheet #gb-attributes-detail label.gb-secondary {
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
 }
 
 .gb-quickref-sheet #gb-attributes-detail label + div {
@@ -442,7 +441,7 @@
 }
 
 .gb-quickref-sheet .gb-attack .gb-name {
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
   font-weight: bold;
 }
 
@@ -498,41 +497,38 @@
   left: 100%;
   padding: 5px;
   color: var(--gb-colorSecondaryLabel);
-  background-color: var(--gb-colorLightgrey);
-  border: var(--gb-borderWidth1) var(--gb-borderStyleSolid) var(--gb-colorGrey);
+  background-color: var(--gb-colorLightBorder);
+  border: var(--gb-borderWidthRollable) var(--gb-borderStyleSolid) var(--gb-colorDarkBorder);
   border-radius: 5px;
 }
 
-.gb-quickref-sheet .gmod {
-  background-color: inherit !important;
-}
-
-.gb-quickref-sheet .glinkmod,
-.gb-quickref-sheet .gurpslink {
+.gb-quickref-sheet .gmod,
+.gb-quickref-sheet .gga-app.glinkmod,
+.gb-quickref-sheet .gga-app.gurpslink {
   border-radius: var(--gb-borderRadius);
-  background-color: var(--gb-backgroundColorModifier);
-}
-
-.gb-quickref-sheet .glinkmod:hover,
-.gb-quickref-sheet .gmod:hover {
-  border: none !important;
+  background: none;
   background-color: var(--gb-backgroundColorModifier) !important;
-  margin: 0;
-  padding: 0;
-  border-radius: var(--gb-borderRadius);
+  border: none;
 }
 
-.gb-quickref-sheet .gb-value.gmod:active,
-.gb-quickref-sheet .glinkmod:active {
+.gb-quickref-sheet .gmod:hover,
+.gb-quickref-sheet .gga-app.glinkmod:hover,
+.gb-quickref-sheet .gga-app.gurpslink:hover {
+  border: none !important;
+  background-color: var(--gb-backgroundColorModHover) !important;
+}
+
+.gb-quickref-sheet .gmod:active,
+.gb-quickref-sheet .gga-app.glinkmod:active,
+.gb-quickref-sheet .gga-app.gurpslink:active {
   background-color: var(--gb-backgroundColorModActive) !important;
 }
 
 .gb-quickref-sheet .rollable {
-  border-bottom: var(--gb-borderWidth1) var(--gb-borderStyleDotted) var(--gb-colorDarkred);
+  border-bottom: var(--gb-borderWidthRollable) var(--gb-borderStyleRollable) var(--gb-colorRollableBorder);
 }
 
-.gb-quickref-sheet .rollable:hover,
-.gb-quickref-sheet .gurpslink:hover {
+.gb-quickref-sheet .rollable:hover {
   background-color: var(--gb-backgroundColorRollable) !important;
   border: none !important;
   margin: 0 !important;
@@ -540,9 +536,8 @@
   padding: 0;
 }
 
-.gb-quickref-sheet .rollable:active,
-.gb-quickref-sheet .gurpslink:active {
-  background-color: var(--gb-colorDarkgoldenrod) !important;
+.gb-quickref-sheet .rollable:active {
+  background-color: var(--gb-backgroundColorRollableActive) !important;
   border: none !important;
   margin: 0 !important;
   border-radius: var(--gb-borderRadius);
@@ -550,7 +545,7 @@
 }
 
 .gb-quickref-sheet .pdflink {
-  color: var(--gb-colorDarkblue);
+  color: var(--gb-colorPdfLink);
   text-decoration: underline;
 }
 
@@ -559,15 +554,13 @@
 }
 
 /* ==== Footer ==== */
-
-/* ==== Footer ==== */
 .gb-quick-reference #bottom-border {
   position: sticky;
   overflow: hidden;
   left: 0;
   bottom: 0;
   box-shadow: var(--gb-boxShadow);
-  border-top: var(--gb-borderWidth1) var(--gb-borderStyleSolid) var(--gb-colorLightgrey);
+  border-top: var(--gb-borderWidthRollable) var(--gb-borderStyleSolid) var(--gb-colorLightBorder);
   padding: var(--gb-standardSpacing) var(--gb-standardSpacing) 0 var(--gb-standardSpacing);
   margin: 0 calc(var(--gb-standardSpacing) * -1);
   margin-bottom: calc(var(--gb-standardSpacing) * -1);
@@ -606,7 +599,7 @@
 
 .gb-quickref-sheet #copyright {
   padding-top: 50px;
-  color: var(--gb-colorGold);
+  color: var(--gb-colorFooterText);
   text-decoration: none;
 }
 
@@ -626,7 +619,7 @@
   display: grid;
   grid-template-columns: 6fr 7fr;
   grid-template-rows: min-content 1fr min-content;
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
   position: relative;
 }
 
@@ -637,11 +630,12 @@
 
 .gb-quickref-sheet #gb-footer .gb-label {
   font-family: var(--gb-fontBody);
-  color: var(--gb-headerColor);
+  color: var(--gb-colorHeader);
 }
 
 .gb-quickref-sheet #gb-footer .gb-value.gb-bonus {
   font-size: calc(var(--gb-fontSize24) * 0.75);
+  text-align: left;
 }
 
 .gb-quickref-sheet #gb-footer h3 {
@@ -656,6 +650,7 @@
 .gb-quickref-sheet #gb-defenses-detail {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet #gb-defenses .gb-defense {
@@ -679,13 +674,16 @@
   flex-flow: row nowrap;
   width: 100%;
   justify-content: center;
+  margin: 0 var(--gb-standardSpacing);
 }
 
-/* Defense value styling (extracted from inline styles) */
 .gb-quickref-sheet .gb-defense .gb-value.rollable {
-  margin: 0 3px;
   width: 100%;
   text-align: center;
+}
+
+.gb-quickref-sheet .gb-defense .gb-value.rollable.with-bonus {
+  text-align: right;
 }
 
 /* ==== Control Thresholds ==== */

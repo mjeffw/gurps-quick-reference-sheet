@@ -1,6 +1,6 @@
 # Change Log
 
-**Release 1.3.2** Dec 3, 2025
+**Release 1.3.3** Dec 4, 2025
 
 - Updated CSS styles.
 
