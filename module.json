@@ -38,6 +38,6 @@
     "./gurps-quick-reference-sheet.js"
   ],
   "url": "https://github.com/mjeffw/gurps-quick-reference-sheet",
-  "manifest": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.3.2/module.json",
-  "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.3.2/gurps-quick-reference-sheet.zip"
+  "manifest": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.3.3/module.json",
+  "download": "https://github.com/mjeffw/gurps-quick-reference-sheet/releases/download/v1.3.3/gurps-quick-reference-sheet.zip"
 }
