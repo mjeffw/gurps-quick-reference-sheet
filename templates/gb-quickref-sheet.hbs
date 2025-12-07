@@ -41,13 +41,8 @@
           {{/with}}
           {{! Size Modifier }}
           <label class='sb-secondary' for='sm'>SM</label>
-          <div
-            id='sm'
-            class='gb-value penalty gmod'
-            data-name='for Size Modifier'
-            data-otf='{{system.traits.sizemod}} for Size Modifier'
-            draggable='true'
-          >
+          <div id='sm' class='gb-value penalty gmod' data-name='for Size Modifier'
+            data-otf='{{system.traits.sizemod}} for Size Modifier' draggable='true'>
             {{{displayNumber system.traits.sizemod}}}
           </div>
 
@@ -114,11 +109,8 @@
               <button data-operation='resource-reset'>
                 <span class='fas fa-rotate-left'></span>
               </button>
-              <button name='reeling'>
-                <span
-                  class='fas fa-heartbeat {{optionSetStyle system.conditions.reeling}}'
-                  data-onethird='reeling'
-                ></span>
+              <button name='reeling' data-onethird='reeling'>
+                <span class='fas fa-heartbeat {{optionSetStyle system.conditions.reeling}}'></span>
               </button>
               <input type='number' id='hp' class='digits-only' value='{{system.HP.value}}' name='system.HP.value' />
             </div>
@@ -133,11 +125,8 @@
                 <button data-operation='resource-reset'>
                   <span class='fas fa-rotate-left'></span>
                 </button>
-                <button name='exhausted'>
-                  <span
-                    class='fas fa-lungs {{optionSetStyle system.conditions.exhausted}}'
-                    data-onethird='exhausted'
-                  ></span>
+                <button name='exhausted' data-onethird='exhausted'>
+                  <span class='fas fa-lungs {{optionSetStyle system.conditions.exhausted}}'></span>
                 </button>
               {{/if}}
             </div>
@@ -146,18 +135,10 @@
 
           {{#each system.additionalresources.tracker}}
             <div class='label-below'>
-              <div
-                id='cp-container'
-                class='with-button'
-                data-gurps-resource='additionalresources.tracker.{{zeroFill @key 4}}'
-              >
-                <input
-                  type='text'
-                  id='cp'
-                  class='digits-only'
-                  name='system.additionalresources.tracker.{{zeroFill @key 4}}.value'
-                  value='{{value}}'
-                />
+              <div id='cp-container' class='with-button'
+                data-gurps-resource='additionalresources.tracker.{{zeroFill @key 4}}'>
+                <input type='text' id='cp' class='digits-only'
+                  name='system.additionalresources.tracker.{{zeroFill @key 4}}.value' value='{{value}}' />
                 <button data-operation='resource-reset'>
                   <span class='fas fa-rotate-left'></span>
                 </button>
@@ -219,12 +200,8 @@
             {{#each system.skills}}
               <li>
                 {{#if (empty contains)}}
-                  <span
-                    class='{{rollable level}}'
-                    data-name='{{name}}'
-                    data-key='system.skills.{{@key}}'
-                    data-otf='Sk:"{{name}}"'
-                  >
+                  <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
+                    data-otf='Sk:"{{name}}"'>
                     {{{gurpslink this.name}}}-{{this.level}}
                   </span>
                   {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
@@ -234,23 +211,15 @@
                   <ul>
                     {{#each contains}}
                       <li>
-                        <span
-                          class='{{rollable level}}'
-                          data-name='{{name}}'
-                          data-key='system.skills.{{@key}}'
-                          data-otf='Sk:"{{name}}"'
-                        >
+                        <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
+                          data-otf='Sk:"{{name}}"'>
                           {{{gurpslink this.name}}}-{{this.level}}
                         </span>
                         {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                         {{#each contains}}
                           and
-                          <span
-                            class='{{rollable level}}'
-                            data-name='{{name}}'
-                            data-key='system.skills.{{@key}}'
-                            data-otf='Sk:"{{name}}"'
-                          >
+                          <span class='{{rollable level}}' data-name='{{name}}' data-key='system.skills.{{@key}}'
+                            data-otf='Sk:"{{name}}"'>
                             {{{gurpslink this.name}}}-{{this.level}}
                           </span>
                           {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
@@ -274,12 +243,8 @@
             {{#each system.spells}}
               <li>
                 {{#if (empty contains)}}
-                  <span
-                    class='{{rollable level}}'
-                    data-name='{{name}}'
-                    data-key='system.spells.{{@key}}'
-                    data-otf='Sp:"{{name}}"'
-                  >
+                  <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
+                    data-otf='Sp:"{{name}}"'>
                     {{{gurpslink this.name}}}-{{this.level}}
                     {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                   </span>
@@ -289,24 +254,16 @@
                   <ul>
                     {{#each contains}}
                       <li>
-                        <span
-                          class='{{rollable level}}'
-                          data-name='{{name}}'
-                          data-key='system.spells.{{@key}}'
-                          data-otf='Sp:"{{name}}"'
-                        >
+                        <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
+                          data-otf='Sp:"{{name}}"'>
                           {{{gurpslink this.name}}}-{{this.level}}
                           {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                         </span>
                         {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
 
                         {{#each contains}}
-                          <span
-                            class='{{rollable level}}'
-                            data-name='{{name}}'
-                            data-key='system.spells.{{@key}}'
-                            data-otf='Sp:"{{name}}"'
-                          >
+                          <span class='{{rollable level}}' data-name='{{name}}' data-key='system.spells.{{@key}}'
+                            data-otf='Sp:"{{name}}"'>
                             {{{gurpslink this.name}}}-{{this.level}}
                             {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                           </span>
@@ -328,12 +285,8 @@
           {{#each (gb-mergeLists (gb-entries system.conditionalmods) (gb-entries system.reactions))}}
             <ul>
               <li>
-                <span
-                  class='gb-value penalty gmod'
-                  data-name='{{situation}}'
-                  data-otf='{{modifier}} {{situation}}'
-                  draggable='true'
-                >
+                <span class='gb-value penalty gmod' data-name='{{situation}}' data-otf='{{modifier}} {{situation}}'
+                  draggable='true'>
                   {{{displayNumber modifier}}}
                 </span>{{situation}}
               </li>
@@ -409,14 +362,13 @@
             <div class='gb-label'>{{localize 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedparry}}
-                <div class='gb-value rollable {{ifThen system.defenses.parry.bonus "with-bonus" ""}}' data-path='parry' data-otf='Parry'>
+                <div class='gb-value rollable {{ifThen system.defenses.parry.bonus "with-bonus" ""}}' data-path='parry'
+                  data-otf='Parry'>
                   {{system.equippedparry}}{{#if system.equippedparryisfencing}}F{{/if}}
                 </div>
                 {{#if system.defenses.parry.bonus}}
-                  <div
-                    class='gb-value gb-bonus rollable'
-                    data-otf='Parry {{{displayNumber system.defenses.parry.bonus}}} DB'
-                  >
+                  <div class='gb-value gb-bonus rollable'
+                    data-otf='Parry {{{displayNumber system.defenses.parry.bonus}}} DB'>
                     {{{displayNumber system.defenses.parry.bonus}}}
                   </div>
                 {{/if}}
@@ -428,14 +380,13 @@
           <div class='gb-defense'>
             <div class='gb-label'>{{localize 'GURPS.dodge'}}</div>
             <div class='gb-defense-container'>
-              <div class='gb-value rollable {{ifThen system.defenses.dodge.bonus "with-bonus" ""}}' data-path='dodge' data-otf='Dodge'>
+              <div class='gb-value rollable {{ifThen system.defenses.dodge.bonus "with-bonus" ""}}' data-path='dodge'
+                data-otf='Dodge'>
                 {{system.currentdodge}}
               </div>
               {{#if system.defenses.dodge.bonus}}
-                <div
-                  class='gb-value gb-bonus rollable'
-                  data-otf='Dodge {{{displayNumber system.defenses.dodge.bonus}}} DB'
-                >
+                <div class='gb-value gb-bonus rollable'
+                  data-otf='Dodge {{{displayNumber system.defenses.dodge.bonus}}} DB'>
                   {{{displayNumber system.defenses.dodge.bonus}}}
                 </div>
               {{/if}}
@@ -445,14 +396,13 @@
             <div class='gb-label'>{{localize 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
               {{#if system.equippedblock}}
-                <div class='gb-value rollable {{ifThen system.defenses.block.bonus "with-bonus" ""}}' data-path='block' data-otf='Block'>
+                <div class='gb-value rollable {{ifThen system.defenses.block.bonus "with-bonus" ""}}' data-path='block'
+                  data-otf='Block'>
                   {{system.equippedblock}}
                 </div>
                 {{#if system.defenses.block.bonus}}
-                  <div
-                    class='gb-value gb-bonus rollable'
-                    data-otf='Block {{{displayNumber system.defenses.block.bonus}}} DB'
-                  >
+                  <div class='gb-value gb-bonus rollable'
+                    data-otf='Block {{{displayNumber system.defenses.block.bonus}}} DB'>
                     {{{displayNumber system.defenses.block.bonus}}}
                   </div>
                 {{/if}}
@@ -475,13 +425,9 @@
           {{#with (gb-tracker data 'Control Points')}}
             {{#each (controlBreakpoints this)}}
               {{#if (ne label 'Unrestrained')}}
-                <div
-                  class='gb-defense'
-                  title='{{localize label}}'
-                  {{#if (eq @index (breakpointIndex-of ../thresholds ../max  ../value))}}
-                  style='background: {{color}}'
-                  {{/if}}
-                >
+                <div class='gb-defense' title='{{localize label}}'
+                  {{#if (eq @index (breakpointIndex-of ../thresholds ../max  ../value))}} style='background: {{color}}'
+                  {{/if}}>
                   <div class='gb-label'>{{gb-thresholdAbbrev label}}</div>
                   <div class='gb-value'>{{breakpoint}}</div>
                 </div>
