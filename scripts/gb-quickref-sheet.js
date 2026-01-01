@@ -1,5 +1,5 @@
 const parselink = GURPS.parselink
-const handlePdf = GURPS.handlePdf
+const handlePdf = GURPS.modules.Pdf.handlePdf
 
 export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   /** @override */

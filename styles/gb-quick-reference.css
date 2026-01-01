@@ -66,8 +66,7 @@
   --gb-fontSize20: 20px;
   --gb-fontSize16: 16px;
   --gb-fontSize14: 14px;
-  --gb-fontSizeSmall: small;
-  --gb-fontSizePercent90: 90%;
+  --gb-fontSizeSmall: 12px;
 
   /* Effects */
   --gb-dropshadow: 2px 2px 4px grey;
@@ -192,7 +191,7 @@
 
 .gb-quickref-sheet h1,
 .gb-quickref-sheet h2 {
-  margin: 0.5rem 0 0;
+  margin: var(--gb-standardSpacing) 0 0;
 }
 
 .gb-quickref-sheet h1 {
@@ -204,7 +203,11 @@
 }
 
 .gb-quickref-sheet h1 .subtype {
-  font-size: var(--gb-fontSize26);
+  font-size: var(--gb-fontSize24);
+  font-family: var(--gb-fontBody);
+  color: var(--gb-colorSecondaryLabel);
+  font-variant: none;
+  margin-left: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet h3 {
@@ -365,7 +368,7 @@
   grid-column: span 8;
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
   justify-items: center;
 }
 
@@ -374,7 +377,7 @@
   flex-flow: row nowrap;
   justify-items: center;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
 }
 
 /* Damage display (inline from HBS) */
@@ -418,7 +421,7 @@
 /* ==== Trackers ==== */
 .gb-quickref-sheet #trackers {
   display: inline-grid;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
   justify-content: space-around;
   margin-top: var(--gb-standardSpacing);
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -473,12 +476,16 @@
 /* Small text for page refs and notes (extracted from inline styles) */
 .gb-quickref-sheet .pageref-text,
 .gb-quickref-sheet li span[style*='font-size: 90%'] {
-  font-size: var(--gb-fontSizePercent90);
+  font-size: var(--gb-fontSizeSmall);
 }
 
 /* ==== Abilities ==== */
 .gb-quickref-sheet #gb-abilities {
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
+}
+
+.gb-quickref-sheet #gb-abilities .gb-ability {
+  margin-bottom: 0.25em;
 }
 
 .gb-quickref-sheet #gb-abilities .glinkmod,
