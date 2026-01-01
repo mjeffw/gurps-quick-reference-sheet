@@ -118,9 +118,9 @@
           </div>
 
           {{! FP Tracker }}
-          <div class='label-below'>
-            <div id='fp-container' class='with-button' data-gurps-resource='FP'>
-              {{#if (ne system.FP.max '–')}}
+          {{#if (ne system.FP.max '–')}}
+            <div class='label-below'>
+              <div id='fp-container' class='with-button' data-gurps-resource='FP'>
                 <input type='number' id='fp' class='digits-only' value='{{system.FP.value}}' name='system.FP.value' />
                 <button data-operation='resource-reset'>
                   <span class='fas fa-rotate-left'></span>
@@ -128,10 +128,10 @@
                 <button name='exhausted' data-onethird='exhausted'>
                   <span class='fas fa-lungs {{optionSetStyle system.conditions.exhausted}}'></span>
                 </button>
-              {{/if}}
+              </div>
+              <label>Current FP</label>
             </div>
-            <label>Current FP</label>
-          </div>
+          {{/if}}
 
           {{#each system.additionalresources.tracker}}
             <div class='label-below'>
@@ -281,7 +281,7 @@
 
       {{#unless (and (empty system.conditionalmods) (empty system.reactions))}}
         <div id='special-abilities'>
-          <h2>Special Abilities</h2>
+          <h2>Conditional Modifiers</h2>
           {{#each (gb-mergeLists (gb-entries system.conditionalmods) (gb-entries system.reactions))}}
             <ul>
               <li>
@@ -361,7 +361,7 @@
           <div class='gb-defense'>
             <div class='gb-label'>{{localize 'GURPS.parry'}}</div>
             <div class='gb-defense-container'>
-              {{#if system.equippedparry}}
+              {{#if (and system.equippedparry (not (eq system.equippedparry '–')))}}
                 <div class='gb-value rollable {{ifThen system.defenses.parry.bonus "with-bonus" ""}}' data-path='parry'
                   data-otf='Parry'>
                   {{system.equippedparry}}{{#if system.equippedparryisfencing}}F{{/if}}
@@ -395,7 +395,7 @@
           <div class='gb-defense'>
             <div class='gb-label'>{{localize 'GURPS.block'}}</div>
             <div class='gb-defense-container'>
-              {{#if system.equippedblock}}
+              {{#if (and system.equippedblock (not (eq system.equippedblock '–')))}}
                 <div class='gb-value rollable {{ifThen system.defenses.block.bonus "with-bonus" ""}}' data-path='block'
                   data-otf='Block'>
                   {{system.equippedblock}}

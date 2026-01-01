@@ -55,10 +55,6 @@
   --gb-backgroundColorRollable: gold;
   --gb-backgroundColorRollableActive: rgb(155, 115, 0);
 
-  --gb-backgroundColorModifier: lightgoldenrodyellow;
-  --gb-backgroundColorModHover: goldenrod;
-  --gb-backgroundColorModActive: darkgoldenrod;
-
   /* Typography */
   --gb-fontHeading: HeadingFont, Roboto, sans-serif;
   --gb-fontBody: BestiaryText, Roboto, sans-serif;
@@ -100,7 +96,7 @@
 }
 
 .gb-quick-reference.bestiary {
-  --gb-backgroundColor: white;
+  --gb-backgroundColor: rgb(254, 248, 240);
   --gb-imageBorderTop: url(../assets/images/bestiary_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/bestiary_border_bottom.webp);
   --gb-topBorderHeight: 77px;
@@ -112,6 +108,9 @@
     rgba(0, 0, 0, 0) 80%
   );
   --gb-pageRefMargins: 15px 0 15px 0;
+  --gb-backgroundColorModActive: salmon;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 .gb-quick-reference.bugstiary {
@@ -120,6 +119,9 @@
   --gb-imageBorderBottom: url(../assets/images/bugstiary_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
+  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.garden {
@@ -128,6 +130,9 @@
   --gb-imageBorderBottom: url(../assets/images/garden_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
+  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.snakes {
@@ -136,6 +141,9 @@
   --gb-imageBorderBottom: url(../assets/images/snakes_border_bottom.webp);
   --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
+  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.warlock {
@@ -144,6 +152,9 @@
   --gb-imageBorderBottom: url(../assets/images/warlock_border_bottom.webp);
   --gb-bottomColumnTemplate: 4% 5.5% auto 5.5% 6%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
+  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 /* ==== Base Styles ==== */
@@ -507,21 +518,21 @@
 .gb-quickref-sheet .gga-app.gurpslink {
   border-radius: var(--gb-borderRadius);
   background: none;
-  background-color: var(--gb-backgroundColorModifier) !important;
+  background-color: var(--gb-backgroundColorModifier);
   border: none;
 }
 
 .gb-quickref-sheet .gmod:hover,
 .gb-quickref-sheet .gga-app.glinkmod:hover,
 .gb-quickref-sheet .gga-app.gurpslink:hover {
-  border: none !important;
-  background-color: var(--gb-backgroundColorModHover) !important;
+  border: none;
+  background-color: var(--gb-backgroundColorModHover);
 }
 
 .gb-quickref-sheet .gmod:active,
 .gb-quickref-sheet .gga-app.glinkmod:active,
 .gb-quickref-sheet .gga-app.gurpslink:active {
-  background-color: var(--gb-backgroundColorModActive) !important;
+  background-color: var(--gb-backgroundColorModActive);
 }
 
 .gb-quickref-sheet .rollable {
@@ -529,17 +540,17 @@
 }
 
 .gb-quickref-sheet .rollable:hover {
-  background-color: var(--gb-backgroundColorRollable) !important;
-  border: none !important;
-  margin: 0 !important;
+  background-color: var(--gb-backgroundColorRollable);
+  border-bottom: var(--gb-borderWidthRollable) var(--gb-borderStyleRollable) transparent;
+  margin: 0;
   border-radius: var(--gb-borderRadius);
   padding: 0;
 }
 
 .gb-quickref-sheet .rollable:active {
-  background-color: var(--gb-backgroundColorRollableActive) !important;
-  border: none !important;
-  margin: 0 !important;
+  background-color: var(--gb-backgroundColorRollableActive);
+  border: none;
+  margin: 0;
   border-radius: var(--gb-borderRadius);
   padding: 0;
 }
