@@ -204,7 +204,7 @@
 
 .gb-quickref-sheet h1 .subtype {
   font-size: var(--gb-fontSize24);
-  font-family: var(--gb-fontBody);
+  font-family: var(--gb-fontSecondary);
   color: var(--gb-colorSecondaryLabel);
   font-variant: none;
   margin-left: var(--gb-standardSpacing);
@@ -235,6 +235,23 @@
   margin: 0;
   color: var(--gb-colorHeader);
   padding: 0 0 0 1rem;
+}
+
+.gb-quickref-sheet #gb-attacks ul {
+  padding: 0.5rem;
+}
+
+.gb-quickref-sheet li.gb-attack-ranged,
+.gb-quickref-sheet li.gb-attack-melee {
+  list-style-type: none;
+  margin-left: 0.5rem;
+  text-indent: -0.5rem;
+}
+
+.gb-quickref-sheet li.gb-attack > i {
+  font-size: var(--gb-fontSizeSmall);
+  font-weight: 400;
+  color: var(--gb-colorSecondaryLabel);
 }
 
 .gb-quickref-sheet li {
@@ -465,6 +482,11 @@
 
 .gb-quickref-sheet .gb-penalty.acc::before {
   content: 'Acc ';
+}
+
+.gb-quickref-sheet span.usage {
+  font-weight: 600;
+  color: var(--gb-colorSecondaryLabel);
 }
 
 /* ==== Traits & Skills ==== */

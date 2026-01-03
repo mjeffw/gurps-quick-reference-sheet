@@ -163,9 +163,9 @@
           <ul>
             {{#each this}}
               {{#if this.range}}
-                <li class='gb-attack'>{{> gb-attack-ranged}}</li>
+                <li class='gb-attack gb-attack-ranged'><i class="fa-solid fa-bow-arrow"></i>{{> gb-attack-ranged}}</li>
               {{else}}
-                <li class='gb-attack'>{{> gb-attack-melee}}</li>
+                <li class='gb-attack gb-attack-melee'><i class="fa-solid fa-sword"></i>{{> gb-attack-melee}}</li>
               {{/if}}
             {{/each}}
           </ul>
@@ -288,7 +288,7 @@
                 <span class='gb-value penalty gmod' data-name='{{situation}}' data-otf='{{modifier}} {{situation}}'
                   draggable='true'>
                   {{{displayNumber modifier}}}
-                </span>{{situation}}
+                </span>{{{gurpslink situation}}}
               </li>
             </ul>
           {{/each}}
@@ -302,21 +302,41 @@
             <h3>Combat Load ({{toLocaleString eqtsummary.eqtlbs}}
               lb; ${{toLocaleString eqtsummary.eqtcost}}):</h3>
             <ul id='equip-carried'>
-              {{#each (flatlist (lookup system.equipment 'carried'))}}
+              {{!#each (flatlist (lookup system.equipment 'carried'))}}
+              {{#each system.equipment.carried}}
                 <li class='equipment indent{{this.indent}}'>
-                  {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
-                  {{this.name}}
-                  {{#if (gt (gb-round count) 1)}}
-                    {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}},
-                      {{gb-round weightsum}}
-                      lbs.){{/if}}
+                  {{#if (empty contains)}}
+                    {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
+                    {{this.name}}
+                    {{#if (gt (gb-round count) 1)}}
+                      {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}}, {{gb-round weightsum}}
+                        lbs.){{/if}}
+                    {{else}}
+                      {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
+                    {{/if}}
+
                   {{else}}
-                    {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
+                    <i>{{name}}</i>
+                    <ul>
+                      {{#each contains}}
+                        <li class='equipment indent{{this.indent}}'>
+                          {{#if (gt (gb-round count) 1)}}{{gb-round count}}× {{/if}}
+                          {{this.name}}
+                          {{#if (gt (gb-round count) 1)}}
+                            {{#if (or (gb-round costsum) (gb-round weightsum))}}(${{costsum}}, {{gb-round weightsum}}
+                              lbs.){{/if}}
+                          {{else}}
+                            {{#if (or (gb-round cost) (gb-round weight))}}(${{cost}}, {{gb-round weight}} lbs.){{/if}}
+                          {{/if}}
+                        </li>
+                      {{/each}}
+                    </ul>
                   {{/if}}
                 </li>
               {{/each}}
             </ul>
           {{/unless}}
+
           {{#unless (empty system.equipment.other)}}
             <h3>Other ({{toLocaleString eqtsummary.otherlbs}}
               lb; ${{toLocaleString eqtsummary.othercost}}):</h3>
