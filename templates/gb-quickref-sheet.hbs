@@ -79,19 +79,22 @@
               </div>
             </div>
           </div>
+
           {{! Basic Move }}
           <label class='sb-secondary' for='move'>{{localize 'GURPS.move'}}</label>
           <div id='move' class='label-below'>
             <div class='gb-move' data-key='{{@key}}' title='{{mode}}'>
-
               <div>
+
                 <div class='gb-value secondary'>{{invoke document method='getCurrentMove'}}</div>
                 {{#with (invoke document method='_getCurrentMoveMode')}}
-                  {{#if enhanced}}
+                  {{#if (and enhanced (ne enhanced (invoke ../document method='getCurrentMove')))}}
                     <div class='gb-value secondary'>/</div>
                     <div class='gb-value secondary'>{{enhanced}}</div>
                   {{/if}}
-                  <div class='gb-value secondary'>&nbsp;({{basic}})</div>
+                  {{#if (ne (invoke ../document method='getCurrentMove') (toNumber basic))}}
+                    <div class='gb-value secondary'>&nbsp;({{basic}})</div>
+                  {{/if}}
                 {{/with}}
               </div>
             </div>
@@ -102,6 +105,7 @@
             </select>
           </div>
         </div>
+
         <div id='trackers'>
           {{! HP Tracker }}
           <div class='label-below'>
