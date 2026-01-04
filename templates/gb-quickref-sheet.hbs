@@ -85,17 +85,14 @@
           <div id='move' class='label-below'>
             <div class='gb-move' data-key='{{@key}}' title='{{mode}}'>
               <div>
-
-                <div class='gb-value secondary'>{{invoke document method='getCurrentMove'}}</div>
-                {{#with (invoke document method='_getCurrentMoveMode')}}
-                  {{#if (and enhanced (ne enhanced (invoke ../document method='getCurrentMove')))}}
-                    <div class='gb-value secondary'>/</div>
-                    <div class='gb-value secondary'>{{enhanced}}</div>
-                  {{/if}}
-                  {{#if (ne (invoke ../document method='getCurrentMove') (toNumber basic))}}
-                    <div class='gb-value secondary'>&nbsp;({{basic}})</div>
-                  {{/if}}
-                {{/with}}
+                <div class='gb-value secondary'>{{currentMove}}</div>
+                {{#if (and currentMoveMode.enhanced (ne currentMoveMode.enhanced currentMove))}}
+                  <div class='gb-value secondary'>/</div>
+                  <div class='gb-value secondary'>{{currentMoveMode.enhanced}}</div>
+                {{/if}}
+                {{#if (ne currentMove (toNumber currentMoveMode.basic))}}
+                  <div class='gb-value secondary'>&nbsp;({{currentMoveMode.basic}})</div>
+                {{/if}}
               </div>
             </div>
             <select id='move-mode' {{disabled (lt (length system.move) 2)}}>

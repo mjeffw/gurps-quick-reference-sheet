@@ -51,7 +51,7 @@ export default async function init(module) {
     return thresholdLabelMap[threshold] ?? ''
   })
 
-  const toRemove = ['Natural Attacks', 'Unarmed Combat']
+  const toRemove = ['Natural Attacks', 'Unarmed Combat', 'Kick', 'Punch', 'Punch or Bite', 'Grapple']
   Handlebars.registerHelper('gb-traitFilter', function (traits) {
     const array = objectToArray(traits)
     return arrayToObject(
@@ -198,6 +198,7 @@ export default async function init(module) {
       shots: ranged.shots,
       rcl: ranged.rcl,
       cost: ranged.cost,
+      mode: ranged.mode,
       damagecomponent: [
         {
           damage: ranged.damage,

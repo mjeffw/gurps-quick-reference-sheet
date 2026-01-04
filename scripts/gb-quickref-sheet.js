@@ -28,6 +28,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     data.copyright = foundry.utils.getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024 Gaming Ballistic, LLC'
     data.torso = this.actor.getTorsoDr()
     data.parryblock = this.actor.getEquippedParry()
+    data.currentMove = this.actor.getCurrentMove()
+    data.currentMoveMode = this.actor._getCurrentMoveMode()
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
