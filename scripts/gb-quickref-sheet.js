@@ -29,7 +29,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     data.torso = this.actor.getTorsoDr()
     data.parryblock = this.actor.getEquippedParry()
     data.currentMove = this.actor.getCurrentMove()
-    data.currentMoveMode = this.actor._getCurrentMoveMode()
+    data.currentMoveMode = this.actor.getCurrentMoveMode()
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
