@@ -227,6 +227,7 @@
 
 .gb-quickref-sheet .gb-name {
   font-weight: bold;
+  color: var(--gb-colorHeader);
 }
 
 /* ==== Lists ==== */
