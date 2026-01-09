@@ -182,12 +182,12 @@
           <h2>Traits</h2>
           <ul>
             {{#each (gb-traitFilter (flatlist system.ads))}}
-              <li class='indent{{this.indent}}'>  
-                 {{#if (or this.hasContains this.hasCollapsed)}}<em>{{{gurpslink name}}}</em>{{else}}{{{gurpslink name}}}{{/if}}
-                  {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
-                  {{#if notes}}<br />
-                    <span class='pageref-text'>{{{gurpslinkbr notes}}}</span>
-                  {{/if}}
+              <li class='indent{{this.indent}}'>
+                {{#if (or this.hasContains this.hasCollapsed)}}<em>{{{gurpslink name}}}</em>{{else}}{{{gurpslink name}}}{{/if}}
+                {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
+                {{#if notes}}<br />
+                  <span class='pageref-text'>{{{gurpslinkbr notes}}}</span>
+                {{/if}}
               </li>
             {{/each}}
           </ul>

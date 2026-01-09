@@ -1,5 +1,12 @@
 # Change Log
 
+**Release 1.3.3** Jan 10, 2026
+
+- Refactored move display logic to use direct data properties instead of method invocations
+- Enhanced attack displays with icons and improved mode/usage formatting
+- Implemented conditional rendering for FP tracker and defense values
+- Added theme-specific color schemes using CSS color-mix functions
+
 **Release 1.3.3** Dec 4, 2025
 
 - Updated CSS styles.

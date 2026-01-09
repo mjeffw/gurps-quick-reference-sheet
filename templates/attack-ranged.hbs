@@ -1,7 +1,7 @@
 <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}'
   data-key='system.ranged.{{zeroFill @key 5}}' data-otf='R:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
   {{{gurpslink name}}}{{#if level}}<span> ({{level}})</span>{{/if}}</span>:
-  {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
+{{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
 
 {{#each damagecomponent}}
   {{#if damage}}
