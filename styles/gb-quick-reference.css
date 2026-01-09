@@ -430,6 +430,10 @@
   white-space: nowrap;
 }
 
+select#move-mode {
+  max-width: 6.5em;
+}
+
 .gb-quickref-sheet #move .gb-move > div {
   display: flex;
   flex-flow: row nowrap;
