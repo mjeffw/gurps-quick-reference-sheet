@@ -100,10 +100,12 @@
   --gb-imageBorderBottom: url(../assets/images/bestiary_border_bottom.webp);
   --gb-topBorderHeight: 77px;
   --gb-bottomColumnTemplate: 4% 6.5% auto 6.5% 4.5%;
-  --gb-pageRefBackground: radial-gradient(ellipse at center,
-      rgb(254 254 254 / 100%) 0%,
-      rgb(255 255 255 / 80%) 40%,
-      rgba(0, 0, 0, 0) 80%);
+  --gb-pageRefBackground: radial-gradient(
+    ellipse at center,
+    rgb(254 254 254 / 100%) 0%,
+    rgb(255 255 255 / 80%) 40%,
+    rgba(0, 0, 0, 0) 80%
+  );
   --gb-pageRefMargins: 15px 0 15px 0;
   --gb-backgroundColorModActive: salmon;
   --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
@@ -116,9 +118,9 @@
   --gb-imageBorderBottom: url(../assets/images/bugstiary_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
   --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
   --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
-  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.garden {
@@ -127,9 +129,9 @@
   --gb-imageBorderBottom: url(../assets/images/garden_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
   --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
   --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
-  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.snakes {
@@ -138,9 +140,9 @@
   --gb-imageBorderBottom: url(../assets/images/snakes_border_bottom.webp);
   --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
   --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
   --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
-  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 .gb-quick-reference.warlock {
@@ -149,9 +151,9 @@
   --gb-imageBorderBottom: url(../assets/images/warlock_border_bottom.webp);
   --gb-bottomColumnTemplate: 4% 5.5% auto 5.5% 6%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
   --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
   --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
-  --gb-backgroundColorModActive: darkgoldenrod;
 }
 
 /* ==== Base Styles ==== */
@@ -170,7 +172,7 @@
 }
 
 /* Wrapper for main content */
-.gb-quickref-sheet form>div:first-child {
+.gb-quickref-sheet form > div:first-child {
   display: flex;
   flex-flow: column nowrap;
   height: calc(100% - 113px);
@@ -247,7 +249,7 @@
   text-indent: -0.5rem;
 }
 
-.gb-quickref-sheet li.gb-attack>i {
+.gb-quickref-sheet li.gb-attack > i {
   font-size: var(--gb-fontSizeSmall);
   font-weight: 400;
   color: var(--gb-colorSecondaryLabel);
@@ -360,7 +362,7 @@
   color: var(--gb-colorHeader);
 }
 
-.gb-quickref-sheet #gb-attributes-detail label+div {
+.gb-quickref-sheet #gb-attributes-detail label + div {
   font-family: var(--gb-fontAramante);
   font-size: calc(100% * 0.9);
   text-align: left;
@@ -373,7 +375,7 @@
   font-variant: none;
 }
 
-.gb-quickref-sheet #gb-attributes-detail label.sb-secondary+div {
+.gb-quickref-sheet #gb-attributes-detail label.sb-secondary + div {
   font-family: var(--gb-fontAramante);
   text-align: center;
   font-size: 1.2rem;
@@ -388,7 +390,7 @@
   justify-items: center;
 }
 
-.gb-quickref-sheet .sb-secondary-attrs>div {
+.gb-quickref-sheet .sb-secondary-attrs > div {
   display: inline-flex;
   flex-flow: row nowrap;
   justify-items: center;
@@ -432,7 +434,7 @@ select#move-mode {
   max-width: 6.5em;
 }
 
-.gb-quickref-sheet #move .gb-move>div {
+.gb-quickref-sheet #move .gb-move > div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
