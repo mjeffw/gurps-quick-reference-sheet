@@ -55,10 +55,6 @@
   --gb-backgroundColorRollable: gold;
   --gb-backgroundColorRollableActive: rgb(155, 115, 0);
 
-  --gb-backgroundColorModifier: lightgoldenrodyellow;
-  --gb-backgroundColorModHover: goldenrod;
-  --gb-backgroundColorModActive: darkgoldenrod;
-
   /* Typography */
   --gb-fontHeading: HeadingFont, Roboto, sans-serif;
   --gb-fontBody: BestiaryText, Roboto, sans-serif;
@@ -70,8 +66,7 @@
   --gb-fontSize20: 20px;
   --gb-fontSize16: 16px;
   --gb-fontSize14: 14px;
-  --gb-fontSizeSmall: small;
-  --gb-fontSizePercent90: 90%;
+  --gb-fontSizeSmall: 12px;
 
   /* Effects */
   --gb-dropshadow: 2px 2px 4px grey;
@@ -100,7 +95,7 @@
 }
 
 .gb-quick-reference.bestiary {
-  --gb-backgroundColor: white;
+  --gb-backgroundColor: rgb(254, 248, 240);
   --gb-imageBorderTop: url(../assets/images/bestiary_border_top.webp);
   --gb-imageBorderBottom: url(../assets/images/bestiary_border_bottom.webp);
   --gb-topBorderHeight: 77px;
@@ -112,6 +107,9 @@
     rgba(0, 0, 0, 0) 80%
   );
   --gb-pageRefMargins: 15px 0 15px 0;
+  --gb-backgroundColorModActive: salmon;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 .gb-quick-reference.bugstiary {
@@ -120,6 +118,9 @@
   --gb-imageBorderBottom: url(../assets/images/bugstiary_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 .gb-quick-reference.garden {
@@ -128,6 +129,9 @@
   --gb-imageBorderBottom: url(../assets/images/garden_border_bottom.webp);
   --gb-bottomColumnTemplate: 4.7% 6.5% auto 6.5% 4.2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 .gb-quick-reference.snakes {
@@ -136,6 +140,9 @@
   --gb-imageBorderBottom: url(../assets/images/snakes_border_bottom.webp);
   --gb-bottomColumnTemplate: 2% 5.5% auto 5.5% 2%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 .gb-quick-reference.warlock {
@@ -144,6 +151,9 @@
   --gb-imageBorderBottom: url(../assets/images/warlock_border_bottom.webp);
   --gb-bottomColumnTemplate: 4% 5.5% auto 5.5% 6%;
   --gb-pageRefMargins: 10px 0 15px 0;
+  --gb-backgroundColorModActive: darkgoldenrod;
+  --gb-backgroundColorModifier: color-mix(in srgb, var(--gb-backgroundColorModActive) 25%, transparent);
+  --gb-backgroundColorModHover: color-mix(in srgb, var(--gb-backgroundColorModActive) 65%, transparent);
 }
 
 /* ==== Base Styles ==== */
@@ -181,7 +191,7 @@
 
 .gb-quickref-sheet h1,
 .gb-quickref-sheet h2 {
-  margin: 0.5rem 0 0;
+  margin: var(--gb-standardSpacing) 0 0;
 }
 
 .gb-quickref-sheet h1 {
@@ -193,7 +203,11 @@
 }
 
 .gb-quickref-sheet h1 .subtype {
-  font-size: var(--gb-fontSize26);
+  font-size: var(--gb-fontSize24);
+  font-family: var(--gb-fontSecondary);
+  color: var(--gb-colorSecondaryLabel);
+  font-variant: none;
+  margin-left: var(--gb-standardSpacing);
 }
 
 .gb-quickref-sheet h3 {
@@ -213,6 +227,7 @@
 
 .gb-quickref-sheet .gb-name {
   font-weight: bold;
+  color: var(--gb-colorHeader);
 }
 
 /* ==== Lists ==== */
@@ -221,6 +236,23 @@
   margin: 0;
   color: var(--gb-colorHeader);
   padding: 0 0 0 1rem;
+}
+
+.gb-quickref-sheet #gb-attacks ul {
+  padding: 0.5rem;
+}
+
+.gb-quickref-sheet li.gb-attack-ranged,
+.gb-quickref-sheet li.gb-attack-melee {
+  list-style-type: none;
+  margin-left: 0.5rem;
+  text-indent: -0.5rem;
+}
+
+.gb-quickref-sheet li.gb-attack > i {
+  font-size: var(--gb-fontSizeSmall);
+  font-weight: 400;
+  color: var(--gb-colorSecondaryLabel);
 }
 
 .gb-quickref-sheet li {
@@ -354,7 +386,7 @@
   grid-column: span 8;
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
   justify-items: center;
 }
 
@@ -363,7 +395,7 @@
   flex-flow: row nowrap;
   justify-items: center;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
 }
 
 /* Damage display (inline from HBS) */
@@ -398,6 +430,10 @@
   white-space: nowrap;
 }
 
+select#move-mode {
+  max-width: 6.5em;
+}
+
 .gb-quickref-sheet #move .gb-move > div {
   display: flex;
   flex-flow: row nowrap;
@@ -407,7 +443,7 @@
 /* ==== Trackers ==== */
 .gb-quickref-sheet #trackers {
   display: inline-grid;
-  gap: 0.5rem;
+  gap: var(--gb-standardSpacing);
   justify-content: space-around;
   margin-top: var(--gb-standardSpacing);
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -453,6 +489,11 @@
   content: 'Acc ';
 }
 
+.gb-quickref-sheet span.usage {
+  font-weight: 600;
+  color: var(--gb-colorSecondaryLabel);
+}
+
 /* ==== Traits & Skills ==== */
 .gb-quickref-sheet #gb-traits-skills {
   column-count: 2;
@@ -462,12 +503,16 @@
 /* Small text for page refs and notes (extracted from inline styles) */
 .gb-quickref-sheet .pageref-text,
 .gb-quickref-sheet li span[style*='font-size: 90%'] {
-  font-size: var(--gb-fontSizePercent90);
+  font-size: var(--gb-fontSizeSmall);
 }
 
 /* ==== Abilities ==== */
 .gb-quickref-sheet #gb-abilities {
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
+}
+
+.gb-quickref-sheet #gb-abilities .gb-ability {
+  margin-bottom: 0.25em;
 }
 
 .gb-quickref-sheet #gb-abilities .glinkmod,
@@ -507,21 +552,21 @@
 .gb-quickref-sheet .gga-app.gurpslink {
   border-radius: var(--gb-borderRadius);
   background: none;
-  background-color: var(--gb-backgroundColorModifier) !important;
+  background-color: var(--gb-backgroundColorModifier);
   border: none;
 }
 
 .gb-quickref-sheet .gmod:hover,
 .gb-quickref-sheet .gga-app.glinkmod:hover,
 .gb-quickref-sheet .gga-app.gurpslink:hover {
-  border: none !important;
-  background-color: var(--gb-backgroundColorModHover) !important;
+  border: none;
+  background-color: var(--gb-backgroundColorModHover);
 }
 
 .gb-quickref-sheet .gmod:active,
 .gb-quickref-sheet .gga-app.glinkmod:active,
 .gb-quickref-sheet .gga-app.gurpslink:active {
-  background-color: var(--gb-backgroundColorModActive) !important;
+  background-color: var(--gb-backgroundColorModActive);
 }
 
 .gb-quickref-sheet .rollable {
@@ -529,17 +574,17 @@
 }
 
 .gb-quickref-sheet .rollable:hover {
-  background-color: var(--gb-backgroundColorRollable) !important;
-  border: none !important;
-  margin: 0 !important;
+  background-color: var(--gb-backgroundColorRollable);
+  border-bottom: var(--gb-borderWidthRollable) var(--gb-borderStyleRollable) transparent;
+  margin: 0;
   border-radius: var(--gb-borderRadius);
   padding: 0;
 }
 
 .gb-quickref-sheet .rollable:active {
-  background-color: var(--gb-backgroundColorRollableActive) !important;
-  border: none !important;
-  margin: 0 !important;
+  background-color: var(--gb-backgroundColorRollableActive);
+  border: none;
+  margin: 0;
   border-radius: var(--gb-borderRadius);
   padding: 0;
 }

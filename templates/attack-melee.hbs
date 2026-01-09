@@ -1,38 +1,55 @@
 {{#if level}}
-  <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}' data-key='system.melee.{{zeroFill @key 5}}'
-    data-otf='M:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
+  <!-- NAME (MODE) (LEVEL):-->
+  <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}'
+    data-key='system.melee.{{zeroFill @key 5}}' data-otf='M:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
     {{{gurpslink name}}} <span>({{level}})</span></span>:
 {{else}}
   <span class='gb-name'>{{name}}</span>:
 {{/if}}
 
 {{#each damage}}
+  {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
   {{#if reach}}
-      {{#each damage}}
-        <span class='gb-damage rollable' data-damage
-          data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per {{../../cost}}{{/if}}{{#unless @last}} and {{/unless}}
-      {{else}}
-        {{#if damage}}
-          {{#each damage}}
-            <span class=' gb-damage rollable' data-damage
-              data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per {{../../cost}}{{/if}}{{#unless}} and {{/unless}}
-          {{else}}
-            <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per {{cost}}{{/if}}
-          {{/each}}
-        {{/if}}
-      {{/each}}
-      {{#if mode}}<span>({{mode}})</span>{{/if}},
-      {{#if followup}}<span>plus {{followup}} follow-up,</span>{{/if}}
-      Reach <span class='gb-reach'>{{reach}}</span>{{#unless @last}} <i>or</i>{{else}}.{{/unless}}
+    {{#each damage}}
+      <!-- DAMAGE per COST and ... -->
+      {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
+      <span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
+        {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
+    {{else}}
+      {{#if damage}}
+        {{#each damage}}
+          <!-- DAMAGE per COST and ... -->
+          {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
+          <span class=' gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
+            {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
+        {{else}}
+          <!-- DAMAGE per COST -->
+          <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per
+            {{cost}}{{/if}},
+        {{/each}}
+      {{/if}}
+    {{/each}}
+
+    <!-- (MODE) plus FOLLOWUP follow-up, Reach REACH or ... -->
+    {{#if followup}}<span>plus {{followup}} follow-up,</span>{{/if}}
+    Reach <span class='gb-reach'>{{reach}}</span>{{#unless @last}} <i>or</i>
+    {{else}}.{{/unless}}
   {{else}}
     {{#if damage}}
-      <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if usage}}<span>
-          ({{usage}})</span>{{/if}}{{#if followup}}<span>plus
-          {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>{{else}}.{{/unless}}
+      <!-- DAMAGE (USAGE) plus FOLLOWUP follow-up, or ... -->
+      <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if followup}}<span>plus
+          {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>
+      {{else}}.{{/unless}}
     {{/if}}
   {{/if}}
 {{/each}}
 
 {{#if (and parry (ne parry 'No'))}}
-<span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if usage}} ({{usage}}){{/if}}'>Parry {{parry}}.</span>{{/if}}
-{{#if notes}}<span class='gb-notes'>{{{gurpslink notes}}}</span>{{/if}}
+  <!-- Parry PARRY. -->
+  <span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if mode}} ({{mode}}){{/if}}'>Parry
+    {{parry}}.</span>
+{{/if}}
+{{#if notes}}
+  <!-- NOTES -->
+  <span class='gb-notes'>{{{gurpslink notes}}}</span>
+{{/if}}

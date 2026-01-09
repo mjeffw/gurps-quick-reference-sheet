@@ -1,5 +1,5 @@
 const parselink = GURPS.parselink
-const handlePdf = GURPS.handlePdf
+const handlePdf = GURPS.modules.Pdf.handlePdf
 
 export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   /** @override */
@@ -25,9 +25,12 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     console.log('GBQuickReferenceSheet.getData', data)
 
     data.pageref = foundry.utils.getProperty(this.actor, 'flags.gurps.pageref')
-    data.copyright = foundry.utils.getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024 Gaming Ballistic, LLC'
+    data.copyright =
+      foundry.utils.getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024–2026 Gaming Ballistic, LLC'
     data.torso = this.actor.getTorsoDr()
     data.parryblock = this.actor.getEquippedParry()
+    data.currentMove = this.actor.getCurrentMove()
+    data.currentMoveMode = this.actor.getCurrentMoveMode()
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
