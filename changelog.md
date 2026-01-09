@@ -1,6 +1,6 @@
 # Change Log
 
-**Release 1.3.3** Jan 10, 2026
+**Release 1.3.4** Jan 10, 2026
 
 - Refactored move display logic to use direct data properties instead of method invocations
 - Enhanced attack displays with icons and improved mode/usage formatting
