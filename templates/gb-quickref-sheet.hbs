@@ -182,12 +182,12 @@
           <h2>Traits</h2>
           <ul>
             {{#each (gb-traitFilter (flatlist system.ads))}}
-              <li class='indent{{this.indent}}'>
-                {{{gurpslink name}}}
-                {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
-                {{#if notes}}<br />
-                  <span class='pageref-text'>{{{gurpslinkbr notes}}}</span>
-                {{/if}}
+              <li class='indent{{this.indent}}'>  
+                 {{#if (or this.hasContains this.hasCollapsed)}}<em>{{{gurpslink name}}}</em>{{else}}{{{gurpslink name}}}{{/if}}
+                  {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
+                  {{#if notes}}<br />
+                    <span class='pageref-text'>{{{gurpslinkbr notes}}}</span>
+                  {{/if}}
               </li>
             {{/each}}
           </ul>
@@ -208,7 +208,7 @@
                   {{#if pageref}}<span class='pageref-text'>({{{pdflinkext this}}})</span>{{/if}}
                   {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                 {{else}}
-                  <i>{{name}}</i>
+                  <em>{{name}}</em>
                   <ul>
                     {{#each contains}}
                       <li>
@@ -251,7 +251,7 @@
                   </span>
                   {{#if notes}}<br /><span class='pageref-text'>{{{gurpslinkbr notes}}}</span>{{/if}}
                 {{else}}
-                  <i>{{name}}</i>
+                  <em>{{name}}</em>
                   <ul>
                     {{#each contains}}
                       <li>
@@ -317,7 +317,7 @@
                     {{/if}}
 
                   {{else}}
-                    <i>{{name}}</i>
+                    <em>{{name}}</em>
                     <ul>
                       {{#each contains}}
                         <li class='equipment indent{{this.indent}}'>
