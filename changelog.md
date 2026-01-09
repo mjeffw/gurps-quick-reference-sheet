@@ -7,7 +7,7 @@
 - Implemented conditional rendering for FP tracker and defense values
 - Added theme-specific color schemes using CSS color-mix functions
 
-**Release 1.3.3** Dec 4, 2025
+**Release 1.3.4** Dec 4, 2025
 
 - Updated CSS styles.
 
