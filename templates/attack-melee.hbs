@@ -12,7 +12,6 @@
   {{#if reach}}
     {{#each damage}}
       <!-- DAMAGE per COST and ... -->
-      {{println '1'}}
       {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
       <span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
         {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
@@ -20,13 +19,11 @@
       {{#if damage}}
         {{#each damage}}
           <!-- DAMAGE per COST and ... -->
-          {{println '2'}}
           {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
           <span class=' gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
             {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
         {{else}}
           <!-- DAMAGE per COST -->
-          {{println '3'}}
           <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per
             {{cost}}{{/if}},
         {{/each}}
@@ -40,7 +37,6 @@
   {{else}}
     {{#if damage}}
       <!-- DAMAGE (USAGE) plus FOLLOWUP follow-up, or ... -->
-      {{println '4'}}
       <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if followup}}<span>plus
           {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>
       {{else}}.{{/unless}}
@@ -50,8 +46,9 @@
 
 {{#if (and parry (ne parry 'No'))}}
   <!-- Parry PARRY. -->
-  <span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if mode}} ({{mode}}){{/if}}'>Parry
-    {{parry}}.</span>{{/if}}
+  <span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if mode}} ({{usage}}){{/if}}'>Parry
+    {{parry}}.</span>
+{{/if}}
 {{#if notes}}
   <!-- NOTES -->
   <span class='gb-notes'>{{{gurpslink notes}}}</span>
