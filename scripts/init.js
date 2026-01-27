@@ -51,22 +51,11 @@ export default async function init(module) {
     return thresholdLabelMap[threshold] ?? ''
   })
 
-  const toRemove = [
-    'Bite or Claw',
-    'Cutting Grapple',
-    'Grapple',
-    'Kick',
-    'Natural Attacks',
-    'Punch',
-    'Punch or Bite',
-    'Shove',
-    'Slam',
-    'Unarmed Combat',
-  ]
+  const toRemove = []
   Handlebars.registerHelper('gb-traitFilter', function (traits) {
     const array = objectToArray(traits)
     return arrayToObject(
-      array.filter(trait => !toRemove.includes(trait.name)),
+      array.filter(it => !it.notes?.includes('<HIDE/>')),
       5
     )
   })
