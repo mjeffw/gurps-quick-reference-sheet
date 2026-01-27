@@ -52,14 +52,16 @@ export default async function init(module) {
   })
 
   const toRemove = [
-    'Natural Attacks',
-    'Unarmed Combat',
-    'Kick',
-    'Punch',
-    'Punch or Bite',
-    'Grapple',
     'Bite or Claw',
     'Cutting Grapple',
+    'Grapple',
+    'Kick',
+    'Natural Attacks',
+    'Punch',
+    'Punch or Bite',
+    'Shove',
+    'Slam',
+    'Unarmed Combat',
   ]
   Handlebars.registerHelper('gb-traitFilter', function (traits) {
     const array = objectToArray(traits)

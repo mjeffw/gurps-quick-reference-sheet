@@ -13,18 +13,21 @@
     {{#each damage}}
       <!-- DAMAGE per COST and ... -->
       {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
-      <span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
+        {{println (concat '1:' ../../this)}}
+      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{this}}</span>{{#if ../../cost}} per
         {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
     {{else}}
       {{#if damage}}
         {{#each damage}}
           <!-- DAMAGE per COST and ... -->
           {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
-          <span class=' gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>{{#if ../../cost}} per
+          {{println (concat '2:' ../../this)}}
+          <span class=' gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{this}}</span>{{#if ../../cost}} per
             {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
         {{else}}
           <!-- DAMAGE per COST -->
-          <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per
+          {{println (concat '3:' ../this)}}
+          <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{damage}}</span>{{#if cost}} per
             {{cost}}{{/if}},
         {{/each}}
       {{/if}}
@@ -37,7 +40,8 @@
   {{else}}
     {{#if damage}}
       <!-- DAMAGE (USAGE) plus FOLLOWUP follow-up, or ... -->
-      <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if followup}}<span>plus
+      {{println (concat '4:' ../this)}}
+      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{damage}}</span>{{#if followup}}<span>plus
           {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>
       {{else}}.{{/unless}}
     {{/if}}
