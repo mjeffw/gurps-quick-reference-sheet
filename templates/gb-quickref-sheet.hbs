@@ -164,9 +164,9 @@
           <ul>
             {{#each this}}
               {{#if this.range}}
-                <li class='gb-attack gb-attack-ranged'><i class="fa-solid fa-bow-arrow"></i>{{> gb-attack-ranged}}</li>
+                <li class='gb-attack gb-attack-ranged'><i class="fa-solid fa-bow-arrow"></i>{{> gb-attack-ranged system=../../system}}</li>
               {{else}}
-                <li class='gb-attack gb-attack-melee'><i class="fa-solid fa-sword"></i>{{> gb-attack-melee}}</li>
+                <li class='gb-attack gb-attack-melee'><i class="fa-solid fa-sword"></i>{{> gb-attack-melee system=../../system}}</li>
               {{/if}}
             {{/each}}
           </ul>

@@ -3,21 +3,28 @@
   {{{gurpslink name}}}{{#if level}}<span> ({{level}})</span>{{/if}}</span>:
 {{#if mode}}<span class='usage'>({{mode}}) </span>{{/if}}
 
+{{debug (concat 'ranged: ' this.system)}}
+
 {{#each damagecomponent}}
   {{#if damage}}
     {{#each damage}}
-      <span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{this}}</span>
+      {{println '1'}}
+      <span class='gb-damage rollable' data-damage data-otf='{{this}}'>{{displayAsDice damage ../system}}</span>
       {{#if ../../cost}} per {{../../cost}} energy{{/if}}
       {{#unless @last}} and {{/unless}}
     {{else}}
-      <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if ../cost}} per
+      {{println '2'}}
+      <span class='gb-damage rollable' data-damage
+        data-otf='{{damage}}'>{{displayAsDice damage ../system}}</span>{{#if ../cost}} per
         {{../cost}}
         energy{{/if}}{{/each}}{{#unless @last}}<i> or </i>
     {{else}}.{{/unless}}
   {{/if}}
 {{else}}
   {{#if damage}}
-    <span class='gb-damage rollable' data-damage data-otf='{{damage}}'>{{damage}}</span>{{#if cost}} per {{cost}}
+    {{println '3'}}
+    <span class='gb-damage rollable' data-damage
+      data-otf='{{damage}}'>{{displayAsDice damage ../system}}</span>{{#if cost}} per {{cost}}
       energy{{/if}}.
   {{/if}}
 {{/each}}

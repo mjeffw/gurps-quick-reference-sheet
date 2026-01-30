@@ -523,9 +523,6 @@ select#move-mode {
 .gb-quickref-sheet #gb-abilities .glinkmod:hover,
 .gb-quickref-sheet #gb-abilities .gurpslink:hover {
   background-color: var(--gb-backgroundColorModifier) !important;
-  border: none;
-  padding: 0;
-  margin: 0;
 }
 
 .gb-quickref-sheet #gb-abilities .glinkmod:active,

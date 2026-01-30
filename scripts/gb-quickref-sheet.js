@@ -6,8 +6,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ['gb-quickref-sheet', 'sheet', 'actor'],
-      width: 590,
-      height: 800,
+      width: 650,
+      height: 850,
       dragDrop: [{ dragSelector: '.item-list .item', dropSelector: null }],
     })
   }
@@ -31,6 +31,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     data.parryblock = this.actor.getEquippedParry()
     data.currentMove = this.actor.getCurrentMove()
     data.currentMoveMode = this.actor.getCurrentMoveMode()
+    data.thrust = this.actor.system.thrust
+    data.swing = this.actor.system.swing
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
