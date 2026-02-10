@@ -152,21 +152,21 @@
     </div>
     <hr />
 
-    {{#unless (and (empty melee) (empty ranged))}}
+    {{#unless (empty attacks)}}
       {{println 'Rendering attacks...'}}
       <h2>Attacks</h2>
-      {{#with (gb-sort (gb-mergeLists ranged melee) sortfield='name')}}
-        {{println 'Rendering attack list with length ' (length this)}}
-        <div id='gb-attacks' data-attacks='{{this.length}}'>
+      {{#with attacks}}
+        {{println (concat 'Rendering attack list with length ' length)}}
+        <div id='gb-attacks' data-attacks='{{length}}'>
           <ul>
             {{#each this}}
-              {{println 'Rendering attack' name }}
+              {{println (concat 'Rendering attack ' name)}}
               {{#if this.range}}
                 <li class='gb-attack gb-attack-ranged'><i
-                    class="fa-solid fa-bow-arrow"></i>{{> gb-attack-ranged system=../../system}}</li>
+                    class="fa-solid fa-bow-arrow"></i>{{{printRangedAttack this}}}</li>
               {{else}}
                 <li class='gb-attack gb-attack-melee'><i
-                    class="fa-solid fa-sword"></i>{{> gb-attack-melee system=../../system}}</li>
+                    class="fa-solid fa-sword"></i>{{{printMeleeAttack this}}}</li>
               {{/if}}
             {{/each}}
           </ul>

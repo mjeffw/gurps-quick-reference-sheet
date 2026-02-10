@@ -32,8 +32,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     data.thrust = this.actor.system.thrust
     data.swing = this.actor.system.swing
 
-    data.melee = this.getMeleeAttacks()
-    data.ranged = this.getRangedAttacks()
+    data.melee = this.getMeleeAttacks().sort((a, b) => a.nameUsage.localeCompare(b.nameUsage))
+    data.ranged = this.getRangedAttacks().sort((a, b) => a.nameUsage.localeCompare(b.nameUsage))
     data.attacks = [...data.melee, ...data.ranged].sort((a, b) => a.nameUsage.localeCompare(b.nameUsage))
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
@@ -68,6 +68,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   getMeleeAttacks() {
     const results = []
 
+    if (!this.actor.system.melee) return results
+
     // Clone the melee object so we can null out entries without modifying the original data.
     const melee = JSON.parse(JSON.stringify(this.actor.system.melee))
 
@@ -95,7 +97,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
         reach: item.reach,
         followup: item.followup,
         damagenotes: item.damagenotes,
-        mode: meleeData.usage,
+        usage: meleeData.usage,
         nameUsage: meleeData.nameUsage,
       })
 
@@ -113,7 +115,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
             reach: otherItem.reach,
             followup: otherItem.followup,
             damagenotes: otherItem.damagenotes,
-            mode: otherItem?.mode ?? '',
+            usage: otherItem?.mode ?? '',
             nameUsage: meleeData.name + (!!otherItem?.mode ? ` (${otherItem.mode})` : ''),
           })
 
@@ -121,6 +123,7 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
         }
       }
 
+      meleeData.damagecomponent = meleeData.damage
       results.push(meleeData)
     }
 
@@ -129,6 +132,8 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
 
   getRangedAttacks() {
     const results = []
+
+    if (!this.actor.system.ranged) return results
 
     // Clone the melee object so we can null out entries without modifying the original data.
     const ranged = JSON.parse(JSON.stringify(this.actor.system.ranged))
@@ -140,7 +145,6 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
 
       const rangedData = this.createRangedData(item)
       rangedData.key = `system.ranged.${key}`
-      rangedData.nameUsage = rangedData.name + (!!rangedData.mode ? ` (${rangedData.mode})` : '')
 
       // If damage looks like <damage>/<number>point<s> then set damage to <damage> and cost to <number>.
       const regex = /(?<damage>.*?)\/(?<points>\d+)?\s*point(?:s)?/
@@ -194,12 +198,14 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
       shots: ranged.shots,
       rcl: ranged.rcl,
       cost: ranged.cost,
-      mode: ranged.mode,
+      usage: ranged.mode,
+      nameUsage: ranged.name + (!!ranged.mode ? ` (${ranged.mode})` : ''),
       damagecomponent: [
         {
           damage: ranged.damage,
           followup: ranged.followup,
           damagenotes: ranged.damagenotes,
+          nameUsage: ranged.name + (!!ranged.mode ? ` (${ranged.mode})` : ''),
         },
       ],
     }
@@ -217,25 +223,6 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   get gurpsActorData() {
     return this.actor.getGurpsActorData()
   }
-
-  /**
-   * @returns {Array<{mode: string, value: number, default: boolean}>}
-   * 
-   * Returns an array of move objects, each with a mode (GROUND, AIR, WATER, SPACE, UNDERGROUND, etc), a value (number
-   * of yards per turn), and an optional default (boolean). If default = true, this is the value used in the 
-   * Encumbrance table that displays adjusted move.
-   * 
-   * It sources its data from either a `system.move` object, if it exists, or directly from `system.basicmove.value`. 
-   * `system.move` should be used when there are multiple movement modes, or when Ground move is not present at all, or 
-   * when actual move per turn is different from basicmove, as when the actor has the Enhanced Move advantage.
-
-   * The modes are also such that we can replace them with 'GURPS.move${mode}' to derive an i18n language key to get
-   * a label for display (e.g., 'GURPS.moveGROUND'). If no such i18n key exists, the label uses the mode without
-   * translation.
-   */
-  // _getMove() {
-  //   return this.gurpsActorData.move ?? [{ mode: 'GROUND', value: gurpsActorData.basicmove.value, default: true }]
-  // }
 
   activateListeners(html) {
     super.activateListeners(html)

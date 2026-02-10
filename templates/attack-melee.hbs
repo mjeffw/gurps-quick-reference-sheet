@@ -1,9 +1,9 @@
-{{println 'Rendering melee attack' name}}
+{{println (concat 'Rendering melee attack ' nameUsage)}}
+{{{println (printMeleeAttack this)}}}
 {{#if level}}
   <!-- NAME (MODE) (LEVEL):-->
   <span class='gb-name rollable' data-name='{{name}}{{#if mode}} {{mode}}:{{/if}}'
-    data-key='system.melee.{{zeroFill @key 5}}' data-otf='M:"{{name}}{{#if mode}} {{mode}}:{{/if}}"'>
-    {{{gurpslink name}}} <span>({{level}})</span></span>:
+    data-key='system.melee.{{zeroFill @key 5}}' data-otf='M:"{{name}}{{#if mode}} {{mode}}:{{/if}}"'>{{{gurpslink name}}} <span>({{level}})</span></span>:
 {{else}}
   <span class='gb-name'>{{name}}</span>:
 {{/if}}

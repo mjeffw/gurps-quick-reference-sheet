@@ -39,6 +39,124 @@ export default async function init(module) {
     return null
   })
 
+  Handlebars.registerHelper('printRangedAttack', function (attack) {
+    return printRangedAttack(attack)
+  })
+
+  Handlebars.registerHelper('printMeleeAttack', function (attack) {
+    return printMeleeAttack(attack)
+  })
+
+  function printRangedAttack(attack) {
+    const levelSpan = !attack.level ? '' : `<span> (${attack.level})</span>`
+    const nameSpan = `<span class='gb-name rollable' 
+       data-name='${attack.nameUsage}' 
+       data-key='${attack.key}'
+       data-otf='R:"${attack.nameUsage}"'>${attack.name}${levelSpan}</span>`
+    const usageSpan = !attack.usage ? '' : `<span class='usage'> (${attack.usage})</span>`
+
+    // Output damage.
+    let damageOutputArray = []
+    for (const component of attack.damagecomponent) {
+      const damageArray = Array.isArray(component.damage) ? component.damage : [component.damage]
+      const damageText = damageArray.join(' and ')
+      const damageSpan = `<span class='gb-damage rollable' data-damage data-otf='D:"${component.nameUsage}"'>${damageText}</span>`
+      // TODO: It would be nice to ask the user which energy pool to use when clicking on the damage.
+      const costSpan = !!component.cost ? `per ${component.cost} energy` : ''
+      damageOutputArray.push(`${damageSpan}${!!costSpan ? ` (${costSpan})` : ''}`)
+    }
+
+    const damageOutput = damageOutputArray.join('<em> or </em>') + '.'
+
+    const rangeSpan = `<span class='gb-reach'>Range ${attack.range}${!attack.halfd ? '' : attack.halfd}</span>`
+    const accuracySpan = !!attack.acc
+      ? `<span class='gb-penalty gmod acc' data-name='Accuracy' data-otf='${displayNumber(attack.acc)} Accuracy'
+      >${displayNumber(attack.acc, { showPlus: false })}</span>`
+      : ''
+
+    let output = `${nameSpan}${usageSpan}: ${damageOutput} ${rangeSpan}. ${accuracySpan}`
+
+    if (!!attack.shots || !!attack.bulk) {
+      if (!!attack.shots) output += `, <span class='gb-reach'>Shots ${attack.shots}</span>`
+
+      if (!!attack.bulk)
+        output += `, <span class='gb-penalty gmod bulk' data-name='Bulk' data-otf='${attack.bulk} to hit for Bulk'>${displayNumber(attack.bulk)}</span>`
+    }
+    output += `.`
+
+    if (!!attack.notes) {
+      output += ` <span class='gb-notes'>${gurpslink(attack.notes)}</span>`
+      if (!output.endsWith('.')) output += `.`
+    }
+    return output
+  }
+
+  /* ----------------------------------------- */
+
+  function printMeleeAttack(attack) {
+    const nameSpan = attack.level
+      ? span(`${attack.name} (${span(attack.level)})`, {
+          class: 'gb-name rollable',
+          data: { name: attack.nameUsage, key: attack.key, otf: `M:"${attack.nameUsage}"` },
+        })
+      : span(attack.name, { class: 'gb-name' })
+
+    const damageOutputArray = []
+    for (const component of attack.damagecomponent) {
+      const usageSpan = component.usage ? span(` ${component.usage} `, { class: 'usage' }) : ''
+
+      const damageArray = Array.isArray(component.damage) ? component.damage : [component.damage]
+      const damageText = damageArray.join(' and ')
+      const damageSpan = span(damageText, {
+        class: 'gb-damage rollable',
+        data: { damage: '', otf: `D:"${component.nameUsage}"` },
+      })
+      const costSpan = !!component.cost ? ` per ${component.cost} energy` : ''
+      const followupSpan = !!component.followup ? span(` plus ${component.followup} follow-up,`) : ''
+      const reachSpan = !!component.reach ? ` Reach ${span(component.reach, { class: 'gb-reach' })}` : ''
+
+      damageOutputArray.push(`${usageSpan}${damageSpan}${costSpan}${followupSpan}${reachSpan}`)
+    }
+
+    const damageOutput = damageOutputArray.join('<em> or </em>') + '. '
+
+    const parrySpan = !!attack.parry
+      ? span(`Parry ${attack.parry}.`, {
+          class: 'gb-damage rollable',
+          data: { otf: `P:${attack.nameUsage} Parry` },
+        })
+      : ''
+
+    const content = attack.notes.endsWith('.') ? attack.notes : attack.notes + '.'
+    const notesSpan = !!attack.notes ? span(gurpslink(content), { class: 'gb-notes' }) : ''
+
+    return nameSpan + ': ' + damageOutput + parrySpan + ' ' + notesSpan
+  }
+
+  function span(content, options = {}) {
+    const classText = options.class ? ` class='${options.class}'` : ''
+    const dataText = options.data
+      ? Object.entries(options.data)
+          .map(([key, value]) => ` data-${key}='${value}'`)
+          .join('')
+      : ''
+    return `<span${classText}${dataText}>${content}</span>`
+  }
+
+  function displayNumber(number, options = { showPlus: true }) {
+    if (number > 0) {
+      return options.showPlus ? `+${number}` : `${number}`
+    } else if (number < 0) {
+      return `&minus;${Math.abs(number)}`
+    } else {
+      return '0'
+    }
+  }
+
+  function gurpslink(text) {
+    return GURPS.gurpslink(text)
+  }
+
   const thresholdLabelMap = {
     Grabbed: '1/10×',
     Grappled: '1/2×',
@@ -76,76 +194,6 @@ export default async function init(module) {
     return formula
   })
 
-  Handlebars.registerHelper('gb-collapseMelee', function (array) {
-    let results = []
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] == null) continue
-      let melee = array[i]
-      let item = {
-        name: melee.name,
-        level: melee.level,
-        notes: melee.notes,
-        parry: melee.parry,
-        cost: melee.cost,
-        damage: [
-          {
-            damage: melee.damage,
-            reach: melee.reach,
-            followup: melee.followup,
-            damagenotes: melee.damagenotes,
-            mode: melee.mode,
-          },
-        ],
-      }
-
-      for (let j = 0; j < array.length; j++) {
-        if (j !== i && array[j] !== null)
-          if (melee.name === array[j].name && melee.level === array[j].level && melee.notes === array[j].notes) {
-            item.damage.push({
-              damage: array[j].damage,
-              reach: array[j].reach,
-              followup: array[j].followup,
-              damagenotes: array[j].damagenotes,
-              mode: array[j].mode,
-            })
-            array[j] = null
-          }
-      }
-      results.push(item)
-    }
-    return results
-  })
-
-  Handlebars.registerHelper('gb-collapseRanged', function (array) {
-    let results = []
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] == null) continue
-      let ranged = array[i]
-
-      // if damage looks like <damage>/<number>point<s> then set damage to <damage> and cost to <number>
-      const regex = /(?<damage>.*?)\/(?<points>\d+)?\s*point(?:s)?/
-      if (ranged.damage && ranged.damage.toString().match(regex)) {
-        convertToDamageAccum(ranged, regex)
-      }
-
-      let item = createRangedItem(ranged)
-
-      for (let j = 0; j < array.length; j++) {
-        if (j !== i && array[j] !== null)
-          if (isValidRanged(ranged, array, j)) {
-            item.damagecomponent.push({
-              damage: array[j].damage,
-              followup: array[j].followup,
-              damagenotes: array[j].damagenotes,
-            })
-            array[j] = null
-          }
-      }
-      results.push(item)
-    }
-    return results
-  })
-
   fetch(`/modules/${module}/templates/attack-ranged.hbs`)
     .then(it => it.text())
     .then(async text => {
@@ -166,48 +214,6 @@ export default async function init(module) {
     label: 'GB Quick Reference Sheet',
     makeDefault: false,
   })
-
-  function convertToDamageAccum(ranged, regex) {
-    const groups = ranged.damage.toString().match(regex).groups
-    ranged.damage = `+${groups.damage}`
-    ranged.cost = +(groups.points || 1)
-  }
-
-  function isValidRanged(ranged, array, j) {
-    return (
-      ranged.name === array[j].name &&
-      ranged.level === array[j].level &&
-      ranged.notes === array[j].notes &&
-      ranged.acc === array[j].acc &&
-      ranged.bulk === array[j].bulk &&
-      ranged.range === array[j].range &&
-      ranged.shots === array[j].shots &&
-      ranged.rcl === array[j].rcl &&
-      ranged.cost === array[j].cost
-    )
-  }
-
-  function createRangedItem(ranged) {
-    return {
-      name: ranged.name,
-      level: ranged.level,
-      notes: ranged.notes,
-      acc: ranged.acc,
-      bulk: ranged.bulk,
-      range: ranged.range,
-      shots: ranged.shots,
-      rcl: ranged.rcl,
-      cost: ranged.cost,
-      mode: ranged.mode,
-      damagecomponent: [
-        {
-          damage: ranged.damage,
-          followup: ranged.followup,
-          damagenotes: ranged.damagenotes,
-        },
-      ],
-    }
-  }
 }
 
 /**

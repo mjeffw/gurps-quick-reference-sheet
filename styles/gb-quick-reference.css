@@ -254,6 +254,7 @@
   font-size: var(--gb-fontSizeSmall);
   font-weight: 400;
   color: var(--gb-colorSecondaryLabel);
+  min-width: 0.5rem;
 }
 
 .gb-quickref-sheet li {
@@ -549,6 +550,8 @@ select#move-mode {
 
 .gb-quickref-sheet .gmod,
 .gb-quickref-sheet .gga-app.glinkmod,
+.gb-quickref-sheet .gga-app.glinkmodplus,
+.gb-quickref-sheet .gga-app.glinkmodminus,
 .gb-quickref-sheet .gga-app.gurpslink {
   border-radius: var(--gb-borderRadius);
   background: none;
@@ -562,12 +565,16 @@ select#move-mode {
 
 .gb-quickref-sheet .gmod:hover,
 .gb-quickref-sheet .gga-app.glinkmod:hover,
+.gb-quickref-sheet .gga-app.glinkmodplus:hover,
+.gb-quickref-sheet .gga-app.glinkmodminus:hover,
 .gb-quickref-sheet .gga-app.gurpslink:hover {
   background-color: var(--gb-backgroundColorModHover);
 }
 
 .gb-quickref-sheet .gmod:active,
 .gb-quickref-sheet .gga-app.glinkmod:active,
+.gb-quickref-sheet .gga-app.glinkmodplus:active,
+.gb-quickref-sheet .gga-app.glinkmodminus:active,
 .gb-quickref-sheet .gga-app.gurpslink:active {
   background-color: var(--gb-backgroundColorModActive);
 }
