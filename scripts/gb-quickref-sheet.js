@@ -22,8 +22,6 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
   getData() {
     const data = super.getData()
 
-    console.log('GBQuickReferenceSheet.getData', data)
-
     data.pageref = foundry.utils.getProperty(this.actor, 'flags.gurps.pageref')
     data.copyright =
       foundry.utils.getProperty(this.actor, 'flags.gurps.copyright') ?? '©2024–2026 Gaming Ballistic, LLC'
@@ -33,6 +31,10 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
     data.currentMoveMode = this.actor.getCurrentMoveMode()
     data.thrust = this.actor.system.thrust
     data.swing = this.actor.system.swing
+
+    data.melee = this.getMeleeAttacks()
+    data.ranged = this.getRangedAttacks()
+    data.attacks = [...data.melee, ...data.ranged].sort((a, b) => a.nameUsage.localeCompare(b.nameUsage))
 
     switch (foundry.utils.getProperty(this.actor, 'flags.gurps.book')) {
       case 'NBB':
@@ -47,10 +49,6 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
         data.cssClass = `${data.cssClass} snakes`
         break
 
-      case 'NB':
-        data.cssClass = `${data.cssClass} bestiary`
-        break
-
       case 'SB':
         data.cssClass = `${data.cssClass} saethor`
         break
@@ -58,8 +56,158 @@ export default class GBQuickReferenceSheet extends GURPS.ActorSheets.character {
       case 'WK':
         data.cssClass = `${data.cssClass} warlock`
         break
+
+      case 'NB':
+      default:
+        data.cssClass = `${data.cssClass} bestiary`
+        break
     }
     return data
+  }
+
+  getMeleeAttacks() {
+    const results = []
+
+    // Clone the melee object so we can null out entries without modifying the original data.
+    const melee = JSON.parse(JSON.stringify(this.actor.system.melee))
+
+    // Create an entry for every melee attack.
+    for (const key of Object.keys(melee)) {
+      const item = melee[key]
+      if (item == null) continue
+
+      const meleeData = {}
+
+      meleeData.key = `system.melee.${key}`
+      meleeData.name = item.name
+      meleeData.usage = item?.mode ?? ''
+      meleeData.level = item.level
+      meleeData.cost = item.cost
+      meleeData.damage = []
+
+      if (item.parry && item.parry !== 'No') meleeData.parry = item.parry
+
+      meleeData.notes = item.notes
+      meleeData.nameUsage = meleeData.name + (!!meleeData.usage ? ` (${meleeData.usage})` : '')
+
+      meleeData.damage.push({
+        damage: item.damage,
+        reach: item.reach,
+        followup: item.followup,
+        damagenotes: item.damagenotes,
+        mode: meleeData.usage,
+        nameUsage: meleeData.nameUsage,
+      })
+
+      // Check for other melee attacks with the same name, level, and notes, and if so, add their damage to this entry and null them out in the original array to avoid duplicates.
+      for (const [otherKey, otherItem] of Object.entries(melee)) {
+        if (
+          otherItem != null &&
+          otherKey !== key &&
+          otherItem.name === meleeData.name &&
+          otherItem.level === meleeData.level &&
+          otherItem.notes === meleeData.notes
+        ) {
+          meleeData.damage.push({
+            damage: otherItem.damage,
+            reach: otherItem.reach,
+            followup: otherItem.followup,
+            damagenotes: otherItem.damagenotes,
+            mode: otherItem?.mode ?? '',
+            nameUsage: meleeData.name + (!!otherItem?.mode ? ` (${otherItem.mode})` : ''),
+          })
+
+          melee[otherKey] = null
+        }
+      }
+
+      results.push(meleeData)
+    }
+
+    return results
+  }
+
+  getRangedAttacks() {
+    const results = []
+
+    // Clone the melee object so we can null out entries without modifying the original data.
+    const ranged = JSON.parse(JSON.stringify(this.actor.system.ranged))
+
+    // Create an entry for every melee attack.
+    for (const key of Object.keys(ranged)) {
+      const item = ranged[key]
+      if (item == null) continue
+
+      const rangedData = this.createRangedData(item)
+      rangedData.key = `system.ranged.${key}`
+      rangedData.nameUsage = rangedData.name + (!!rangedData.mode ? ` (${rangedData.mode})` : '')
+
+      // If damage looks like <damage>/<number>point<s> then set damage to <damage> and cost to <number>.
+      const regex = /(?<damage>.*?)\/(?<points>\d+)?\s*point(?:s)?/
+      if (item.damage && item.damage.toString().match(regex)) {
+        const accummulator = this.convertToDamageAccum(item, regex)
+        rangedData.damagecomponent[0].damage = accummulator.damage
+        rangedData.cost = accummulator.cost
+      }
+
+      for (const [otherKey, otherItem] of Object.entries(ranged)) {
+        if (otherItem != null && otherKey !== key && this.isValidRangedToMerge(rangedData, otherItem)) {
+          rangedData.damagecomponent.push({
+            damage: otherItem.damage,
+            followup: otherItem.followup,
+            damagenotes: otherItem.damagenotes,
+            nameUsage: rangedData.name + (!!otherItem?.mode ? ` (${otherItem.mode})` : ''),
+          })
+
+          ranged[otherKey] = null
+        }
+      }
+
+      results.push(rangedData)
+    }
+
+    return results
+  }
+
+  isValidRangedToMerge(rangedData, otherItem) {
+    return (
+      rangedData.name === otherItem.name &&
+      rangedData.level === otherItem.level &&
+      rangedData.notes === otherItem.notes &&
+      rangedData.acc === otherItem.acc &&
+      rangedData.bulk === otherItem.bulk &&
+      rangedData.range === otherItem.range &&
+      rangedData.shots === otherItem.shots &&
+      rangedData.rcl === otherItem.rcl &&
+      rangedData.cost === otherItem.cost
+    )
+  }
+
+  createRangedData(ranged) {
+    return {
+      name: ranged.name,
+      level: ranged.level,
+      notes: ranged.notes,
+      acc: ranged.acc,
+      bulk: ranged.bulk,
+      range: ranged.range,
+      shots: ranged.shots,
+      rcl: ranged.rcl,
+      cost: ranged.cost,
+      mode: ranged.mode,
+      damagecomponent: [
+        {
+          damage: ranged.damage,
+          followup: ranged.followup,
+          damagenotes: ranged.damagenotes,
+        },
+      ],
+    }
+  }
+
+  convertToDamageAccum(ranged, regex) {
+    const groups = ranged.damage.toString().match(regex).groups
+    return { damage: `+${groups.damage}`, cost: +(groups.points || 1) }
   }
 
   getCustomHeaderButtons() {

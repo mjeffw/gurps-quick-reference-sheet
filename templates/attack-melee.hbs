@@ -1,30 +1,34 @@
+{{println 'Rendering melee attack' name}}
 {{#if level}}
   <!-- NAME (MODE) (LEVEL):-->
-  <span class='gb-name rollable' data-name='{{name}}{{#if mode}} ({{mode}}){{/if}}'
-    data-key='system.melee.{{zeroFill @key 5}}' data-otf='M:"{{name}}{{#if mode}} ({{mode}}){{/if}}"'>
+  <span class='gb-name rollable' data-name='{{name}}{{#if mode}} {{mode}}:{{/if}}'
+    data-key='system.melee.{{zeroFill @key 5}}' data-otf='M:"{{name}}{{#if mode}} {{mode}}:{{/if}}"'>
     {{{gurpslink name}}} <span>({{level}})</span></span>:
 {{else}}
   <span class='gb-name'>{{name}}</span>:
 {{/if}}
 
 {{#each damage}}
-  {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
+  {{#if mode}}<span class="usage">{{mode}}: </span>{{/if}}
   {{#if reach}}
     {{#each damage}}
       <!-- DAMAGE per COST and ... -->
-      {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
-      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{displayAsDice this ../../this.system}}</span>{{#if ../../cost}} per
+      {{println '1 - melee'}}
+      {{#if mode}}<span class="usage">{{mode}}: </span>{{/if}}
+      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{this}}</span>{{#if ../../cost}} per
         {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
     {{else}}
       {{#if damage}}
         {{#each damage}}
           <!-- DAMAGE per COST and ... -->
-          {{#if mode}}<span class="usage">({{mode}}) </span>{{/if}}
-          <span class=' gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{displayAsDice this ../../this.system}}</span>{{#if ../../cost}} per
+          {{println '2 - melee'}}
+          {{#if mode}}<span class="usage">{{mode}}: </span>{{/if}}
+          <span class=' gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../../this}}'>{{this}}</span>{{#if ../../cost}} per
             {{../../cost}}{{/if}}{{#if @last}}, {{else}} and {{/if}}
         {{else}}
           <!-- DAMAGE per COST -->
-          <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{displayAsDice damage ../this.system}}</span>{{#if cost}} per
+          {{println '3 - melee'}}
+          <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{damage}}</span>{{#if cost}} per
             {{cost}}{{/if}},
         {{/each}}
       {{/if}}
@@ -37,7 +41,8 @@
   {{else}}
     {{#if damage}}
       <!-- DAMAGE (USAGE) plus FOLLOWUP follow-up, or ... -->
-      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{displayAsDice damage ../this.system}}</span>{{#if followup}}<span>plus
+      {{println '4 - melee'}}
+      <span class='gb-damage rollable' data-damage data-otf='{{quotedAttackName "D" ../this}}'>{{damage}}</span>{{#if followup}}<span>plus
           {{followup}} follow-up,</span>{{/if}}{{#unless @last}} <i>or</i>
       {{else}}.{{/unless}}
     {{/if}}
@@ -46,7 +51,7 @@
 
 {{#if (and parry (ne parry 'No'))}}
   <!-- Parry PARRY. -->
-  <span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if mode}} ({{mode}}){{/if}}'>Parry
+  <span class='gb-damage rollable' data-damage data-otf='P:{{name}}{{#if mode}} {{mode}}:{{/if}}'>Parry
     {{parry}}.</span>
 {{/if}}
 {{#if notes}}

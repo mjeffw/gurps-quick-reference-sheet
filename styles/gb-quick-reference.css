@@ -54,6 +54,7 @@
   --gb-colorRollableBorder: darkred;
   --gb-backgroundColorRollable: gold;
   --gb-backgroundColorRollableActive: rgb(155, 115, 0);
+  --gb-backgroundColorModActive: salmon;
 
   /* Typography */
   --gb-fontHeading: HeadingFont, Roboto, sans-serif;
@@ -360,6 +361,7 @@
 .gb-quickref-sheet #gb-attributes-detail label.gb-primary,
 .gb-quickref-sheet #gb-attributes-detail label.gb-secondary {
   color: var(--gb-colorHeader);
+  z-index: 5;
 }
 
 .gb-quickref-sheet #gb-attributes-detail label + div {
@@ -517,12 +519,13 @@ select#move-mode {
 
 .gb-quickref-sheet #gb-abilities .glinkmod,
 .gb-quickref-sheet #gb-abilities .gurpslink {
-  background-color: rgb(255 165 0 / 25%) !important;
+  font-weight: normal;
+  background-color: var(--gb-backgroundColorModifier);
 }
 
 .gb-quickref-sheet #gb-abilities .glinkmod:hover,
 .gb-quickref-sheet #gb-abilities .gurpslink:hover {
-  background-color: var(--gb-backgroundColorModifier) !important;
+  background-color: var(--gb-backgroundColorModHover);
 }
 
 .gb-quickref-sheet #gb-abilities .glinkmod:active,
@@ -551,12 +554,15 @@ select#move-mode {
   background: none;
   background-color: var(--gb-backgroundColorModifier);
   border: none;
+  text-indent: 0;
+  font-weight: normal;
+  margin-bottom: 1px;
+  padding-bottom: 0px;
 }
 
 .gb-quickref-sheet .gmod:hover,
 .gb-quickref-sheet .gga-app.glinkmod:hover,
 .gb-quickref-sheet .gga-app.gurpslink:hover {
-  border: none;
   background-color: var(--gb-backgroundColorModHover);
 }
 
@@ -717,6 +723,7 @@ select#move-mode {
   width: 100%;
   justify-content: center;
   margin: 0 var(--gb-standardSpacing);
+  gap: 1px;
 }
 
 .gb-quickref-sheet .gb-defense .gb-value.rollable {
